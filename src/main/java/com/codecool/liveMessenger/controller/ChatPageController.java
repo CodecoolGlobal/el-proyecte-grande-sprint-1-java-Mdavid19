@@ -9,7 +9,7 @@ import org.springframework.web.bind.annotation.RestController;
 @RequestMapping
 public class ChatPageController {
 
-    @GetMapping("/")
+    @GetMapping("/user")
     public String showMainPageAfterLogin(){
         return "Hello this is the Main page";
     }
