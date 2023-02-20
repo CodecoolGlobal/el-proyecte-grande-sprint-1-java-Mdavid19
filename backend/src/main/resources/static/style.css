@@ -16,7 +16,7 @@ html {
 }
 
 .top-part {
-    background: url("/friendship.jpg");
+    background: url("/static/friendship.jpg");
     background-blend-mode: overlay;;
     width: 97%;
     height: 100%;
