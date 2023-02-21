@@ -10,7 +10,6 @@ function App() {
             <LandingPageWelcome/>
             <LandingPageButtons />
         </div>
-
     );
 }
 
