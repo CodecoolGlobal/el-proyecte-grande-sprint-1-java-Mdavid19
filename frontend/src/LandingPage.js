@@ -1,16 +1,15 @@
-import './style.css';
+import LandingPageButtons from "./component/LandingPageButtons";
 import LandingPageLogo from "./component/LandingPageLogo";
 import LandingPageWelcome from "./component/LandingPageWelcome";
-import LandingPageButtons from "./component/LandingPageButtons";
+import './style.css'
 
-function App() {
+
+export function LandingPage() {
     return (
         <div>
-            <LandingPageLogo/>,
+            <LandingPageLogo/>
             <LandingPageWelcome/>
-            <LandingPageButtons />
+            <LandingPageButtons/>
         </div>
-    );
+    )
 }
-
-export default App;
