@@ -1,22 +1,21 @@
 package com.codecool.liveMessenger.controller;
 
-import org.springframework.ui.Model;
+import com.codecool.liveMessenger.model.User;
+import com.codecool.liveMessenger.service.UserService;
 import org.springframework.web.bind.annotation.*;
+
+import java.util.Set;
 
 @RestController
 @RequestMapping("/register")
 public class RegistrationController {
-    private String name;
+    private UserService userService;
 
-    @GetMapping
-    public String displayRegistration(Model model) {
-        model.addAttribute("name", name != null ? name : null);
-        return name;
+    public RegistrationController(UserService userService) {
+        this.userService = userService;
     }
-
-    @PostMapping
-    public String sendRegisterInfo(@RequestParam String register_name) {
-        name = register_name;
-        return name;
+@GetMapping
+    public Set<User> displayUsers() {
+        return userService.getUsers();
     }
 }
