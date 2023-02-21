@@ -1,4 +1,4 @@
-package com.codecool.liveMessenger;
+package java.com.codecool.liveMessenger;
 
 import org.junit.jupiter.api.Test;
 import org.springframework.boot.test.context.SpringBootTest;

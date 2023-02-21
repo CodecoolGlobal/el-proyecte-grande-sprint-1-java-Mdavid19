@@ -1,9 +1,10 @@
-import React, {StrictMode} from 'react';
+import React from 'react';
 import ReactDOM from 'react-dom/client';
 import './index.css';
 import {BrowserRouter as Router, Route, Routes} from "react-router-dom";
 import reportWebVitals from './reportWebVitals';
 import {LandingPage} from "./LandingPage";
+import {Registration} from "./Registration";
 
 const root = ReactDOM.createRoot(document.getElementById('root'));
 root.render(
@@ -11,6 +12,7 @@ root.render(
         <Router>
             <Routes>
                 <Route path='/' element={<LandingPage/>}/>
+                <Route path='/registration' element={<Registration/>}/>
             </Routes>
         </Router>
     </React.StrictMode>
