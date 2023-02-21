@@ -1,8 +1,15 @@
-import './App.css';
+import './style.css';
+import LandingPageLogo from "./component/LandingPageLogo";
+import LandingPageWelcome from "./component/LandingPageWelcome";
+import LandingPageButtons from "./component/LandingPageButtons";
 
 function App() {
     return (
-    <div>asd</div>
+        <div>
+            <LandingPageLogo/>,
+            <LandingPageWelcome/>
+            <LandingPageButtons />
+        </div>
     );
 }
 
