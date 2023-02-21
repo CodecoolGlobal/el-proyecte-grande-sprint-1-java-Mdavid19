@@ -1,5 +1,15 @@
+import LandingPageButtons from "./component/LandingPageButtons";
+import LandingPageLogo from "./component/LandingPageLogo";
+import LandingPageWelcome from "./component/LandingPageWelcome";
+import './style.css'
+
+
 export function LandingPage() {
     return (
-        <div>Landing Page</div>
+        <div>
+            <LandingPageLogo/>
+            <LandingPageWelcome/>
+            <LandingPageButtons/>
+        </div>
     )
 }
