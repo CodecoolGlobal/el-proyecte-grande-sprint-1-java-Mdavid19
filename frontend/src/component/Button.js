@@ -1,7 +1,11 @@
 //TODO custom button
-function CustomButton() {
+function CustomButton({img_src, url, className}) {
+    const style= {
+        width: '10px'
+    }
     return (
-        <div>
+        <div className={className}>
+            <a href={url}><img style={style} src={img_src} alt="valami"/></a>
         </div>
     )
 }
