@@ -2,9 +2,9 @@ import React from 'react';
 import ReactDOM from 'react-dom/client';
 import {BrowserRouter as Router, Route, Routes} from "react-router-dom";
 import reportWebVitals from './reportWebVitals';
-import {LandingPage} from "./LandingPage";
-import MainPage from "./MainPage";
-import {Registration} from "./Registration";
+import {LandingPage} from "./pages/LandingPage";
+import MainPage from "./pages/MainPage";
+import {Registration} from "./pages/Registration";
 
 
 const root = ReactDOM.createRoot(document.getElementById('root'));
@@ -24,3 +24,4 @@ root.render(
 // to log results (for example: reportWebVitals(console.log))
 // or send to an analytics endpoint. Learn more: https://bit.ly/CRA-vitals
 reportWebVitals();
+
