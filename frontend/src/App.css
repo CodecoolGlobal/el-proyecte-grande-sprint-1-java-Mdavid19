@@ -1,4 +1,64 @@
 #big-nav-bar{
-  max-height: 100px;
+  display: flex;
+  height: 200px;
+  width: 100%;
   background-color: #2698D3;
+}
+
+.profile-picture-frame{
+  display: block;
+  position: static;
+  height: 150px;
+  width: 150px;
+  border: #fff800 2px solid;
+  border-radius: 100px;
+  margin: 20px;
+}
+
+.add-user-button{
+  position: absolute;
+  top: 170px;
+  left: 250px;
+}
+
+.edit-user-btn{
+  position: absolute;
+  top: 20px;
+  right: 30px;
+}
+
+.user-name{
+  font-weight: bold;
+  font-size: 20px;
+}
+
+.user-field{
+  position: static;
+  top: 25px;
+  left: 200px;
+}
+
+.friends-list{
+  width: 50%;
+  height: 550px;
+  background-color: #464242;
+  border: 4px yellowgreen solid;
+}
+
+.chat-panel{
+  width: 50%;
+
+  background-color: #2698D3;
+  height: 550px;
+  border: 4px red solid;
+}
+
+.main-content{
+  display: flex;
+  flex-direction: row;
+}
+
+.profile-picture{
+  width: 150px;
+  height: 150px;
 }
