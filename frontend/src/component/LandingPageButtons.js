@@ -2,6 +2,7 @@ import React from 'react';
 
 
 const LandingPageButtons = ({linkOne,linkTwo}) => {
+
     const style = {
         animationDelay: '0.07s'
     }
