@@ -5,7 +5,7 @@ import com.codecool.liveMessenger.service.UserService;
 import org.springframework.web.bind.annotation.*;
 
 import java.util.Set;
-
+@CrossOrigin(origins = "http://localhost:3000")
 @RestController
 @RequestMapping("/register")
 public class RegistrationController {
