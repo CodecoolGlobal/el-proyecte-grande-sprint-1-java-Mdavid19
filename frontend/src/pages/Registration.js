@@ -1,5 +1,5 @@
 import {Field, Form, Formik, useFormik} from "formik";
-import axios from "./AxiosInstance";
+import axios from "../AxiosInstance";
 
 export function Registration() {
     const url = 'http://localhost:8080/register';
