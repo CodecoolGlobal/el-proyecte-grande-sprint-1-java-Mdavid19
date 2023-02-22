@@ -14,8 +14,6 @@ root.render(
             <Routes>
                 <Route path='/' element={<LandingPage/>}/>
                 <Route path='/registration' element={<Registration/>}/>
-            </Routes>
-            <Routes>
                 <Route path='/main' element={<MainPage/>}/>
             </Routes>
         </Router>
