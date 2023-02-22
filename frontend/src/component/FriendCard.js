@@ -2,7 +2,7 @@ import React from 'react';
 
 const FriendCard = () => {
     return (
-        <div>
+        <div className={'friend-cards'}>
 
         </div>
     );
