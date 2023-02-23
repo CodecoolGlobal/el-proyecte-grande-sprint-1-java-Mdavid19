@@ -5,7 +5,7 @@ import reportWebVitals from './reportWebVitals';
 import {LandingPage} from "./pages/LandingPage";
 import MainPage from "./pages/MainPage";
 import {Registration} from "./pages/Registration";
-import UserProfile from "./UserProfile";
+import UserProfile from "./pages/UserProfile";
 
 
 const root = ReactDOM.createRoot(document.getElementById('root'));
