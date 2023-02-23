@@ -2,10 +2,10 @@ import React from 'react';
 import ReactDOM from 'react-dom/client';
 import {BrowserRouter as Router, Route, Routes} from "react-router-dom";
 import reportWebVitals from './reportWebVitals';
-import {LandingPage} from "./LandingPage";
-import MainPage from "./MainPage";
-import {Registration} from "./Registration";
-import LoginPage from "./LoginPage";
+import {LandingPage} from "./pages/LandingPage";
+import MainPage from "./pages/MainPage";
+import {Registration} from "./pages/Registration";
+import UserProfile from "./pages/UserProfile";
 
 
 const root = ReactDOM.createRoot(document.getElementById('root'));
@@ -15,6 +15,7 @@ root.render(
             <Routes>
                 <Route path='/' element={<LandingPage/>}/>
                 <Route path='/registration' element={<Registration/>}/>
+                <Route path='/user-profile' element={<UserProfile/>}/>
             </Routes>
             <Routes>
                 <Route path='/main' element={<MainPage/>}/>
