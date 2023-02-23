@@ -1,7 +1,8 @@
 import React from 'react';
+import {Link} from "react-router-dom";
 
 
-const LandingPageButtons = ({linkOne,linkTwo}) => {
+const LandingPageButtons = () => {
 
     const style = {
         animationDelay: '0.07s'
@@ -9,15 +10,10 @@ const LandingPageButtons = ({linkOne,linkTwo}) => {
 
     return (
         <div className={'center'}>
-            <a href={linkOne}><button className={['center', 'landing-butt', 'bouncy'].join(" ")}>Login</button></a>
-            <a href={linkTwo}><button className={['center', 'landing-butt', 'bouncy'].join(" ")} style={style}>Register</button></a>
+            <Link to='/'><button className={['center', 'landing-butt', 'bouncy'].join(" ")}>Login</button></Link>
+            <Link to='/registration'><button className={['center', 'landing-butt', 'bouncy'].join(" ")} style={style}>Register</button></Link>
         </div>
     );
 };
-
-LandingPageButtons.defaultProps = {
-    linkOne: "",
-    linkTwo: ""
-}
 
 export default LandingPageButtons;
