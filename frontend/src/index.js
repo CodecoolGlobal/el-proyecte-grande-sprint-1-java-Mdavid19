@@ -2,9 +2,9 @@ import React from 'react';
 import ReactDOM from 'react-dom/client';
 import {BrowserRouter as Router, Route, Routes} from "react-router-dom";
 import reportWebVitals from './reportWebVitals';
-import {LandingPage} from "./LandingPage";
-import MainPage from "./MainPage";
-import {Registration} from "./Registration";
+import {LandingPage} from "./pages/LandingPage";
+import MainPage from "./pages/MainPage";
+import {Registration} from "./pages/Registration";
 import UserProfile from "./UserProfile";
 
 

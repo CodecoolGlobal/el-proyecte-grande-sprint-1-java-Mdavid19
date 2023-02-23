@@ -1,5 +1,5 @@
 import React from 'react';
-import '../index.css'
+import '../styles/index.css'
 import ProfilePicture from "./ProfilePicture";
 import TextField from "./TextField";
 import Button from "./Button";
