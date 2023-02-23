@@ -1,12 +1,29 @@
-import Button from "./Button";
-import settingImage from "../images/setting.png";
 import React from "react";
-import {TextField} from "@mui/material";
+import {Button, createTheme, TextField, ThemeProvider} from "@mui/material";
+import SaveIcon from '@material-ui/icons/Save';
+import '../styles/UserPage.css'
 
 function SetUserInfo({labelForTextArea}) {
+    const theme = createTheme({
+        palette: {
+            primary: {
+                main: '#212121',
+            },
+        },
+    });
+
     return (<div>
-            <TextField id="outlined-basic" label={labelForTextArea} variant="outlined" />
-            <Button img_src={settingImage} />
+            <ThemeProvider theme={theme}>
+                <TextField id="outlined-basic" label={labelForTextArea} variant="outlined" color='primary'/>
+                <Button
+                    variant="contained"
+                    color="primary"
+                    size="small"
+                    startIcon={<SaveIcon />}
+                >
+                    Save
+                </Button>
+            </ThemeProvider>
             </div>)
 }
 
