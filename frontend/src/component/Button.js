@@ -1,7 +1,7 @@
 //TODO custom button
 function CustomButton({img_src, url, className}) {
     const style= {
-        width: '10px'
+        width: '30px'
     }
     return (
         <div className={className}>
