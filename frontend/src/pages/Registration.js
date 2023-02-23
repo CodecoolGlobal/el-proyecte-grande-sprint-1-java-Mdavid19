@@ -32,6 +32,7 @@ export function Registration() {
             const dataJson = JSON.stringify(values)
             await fetchSendUser(url, dataJson, config)
             actions.resetForm()
+            alert("Registration complete")
         }
     });
 
