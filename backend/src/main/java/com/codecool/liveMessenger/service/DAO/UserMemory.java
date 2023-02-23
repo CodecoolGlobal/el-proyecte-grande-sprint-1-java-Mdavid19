@@ -24,6 +24,13 @@ public class UserMemory implements UserDAO {
     }
 
     @Override
+    public User getUserByEmail(String email) {
+        return users.stream()
+                .filter(user -> user.getEmail().equals(email))
+                .findFirst().orElse(null);
+    }
+
+    @Override
     public void addUser(User user) {
         users.add(user);
     }
