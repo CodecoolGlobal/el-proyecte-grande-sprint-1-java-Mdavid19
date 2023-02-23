@@ -6,8 +6,8 @@ import photo from '../images/ccLivelogo.png';
 
 const LandingPageLogo = () => {
     return (
-        <div className={["up-left","bouncy"].join(' ')}>
-            <img width={200} className={"up-left"} src={photo} alt="CCLiveLogo"/>
+        <div className={["up-left","bouncy", "logo"].join(' ')}>
+            <img className={["up-left","logo"].join(" ")} src={photo} alt="CCLiveLogo"/>
         </div>
     );
 };
