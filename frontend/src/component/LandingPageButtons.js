@@ -10,7 +10,7 @@ const LandingPageButtons = () => {
 
     return (
         <div className={'center'}>
-            <Link to='/'><button className={['center', 'landing-butt', 'bouncy'].join(" ")}>Login</button></Link>
+            <Link to='/login'><button className={['center', 'landing-butt', 'bouncy'].join(" ")}>Login</button></Link>
             <Link to='/registration'><button className={['center', 'landing-butt', 'bouncy'].join(" ")} style={style}>Register</button></Link>
         </div>
     );

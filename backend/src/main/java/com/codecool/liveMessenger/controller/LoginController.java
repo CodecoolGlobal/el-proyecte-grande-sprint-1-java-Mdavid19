@@ -1,5 +1,6 @@
 package com.codecool.liveMessenger.controller;
 
+import com.codecool.liveMessenger.model.User;
 import com.codecool.liveMessenger.service.UserService;
 import org.springframework.web.bind.annotation.*;
 
@@ -14,7 +15,7 @@ public class LoginController {
     }
 
     @PostMapping
-    public String Login(@RequestBody String email) {
-        return "login";
+    public boolean Login(@RequestBody String email) {
+        return (userService.getUserByEmail(email) != null);
     }
 }
