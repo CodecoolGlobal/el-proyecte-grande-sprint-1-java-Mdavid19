@@ -1,5 +1,8 @@
 import {Field, Form, Formik, useFormik} from "formik";
 import axios from "../AxiosInstance";
+import '../styles/Registration.css';
+import LandingPageLogo from "../component/LandingPageLogo";
+import SimpleCustomButton from "../component/SimpleCustomButton";
 
 export function Registration() {
     const url = 'http://localhost:8080/register';
@@ -29,20 +32,25 @@ export function Registration() {
             const dataJson = JSON.stringify(values)
             await fetchSendUser(url, dataJson, config)
             actions.resetForm()
+            alert("Registration complete")
         }
     });
 
     return (
-        <div className={"form_container"}>
+        <>
+            <LandingPageLogo style={"position:fixed"}/>
             <Formik initialValues={formik.initialValues} onSubmit={formik.handleSubmit}>
-                <Form>
+                <Form className="form_container">
+                    <label id='userName'>User Name: </label>
                     <Field name="userName" type="text" value={formik.values.userName} onChange={formik.handleChange}/>
+                    <label id='email'>Email: </label>
                     <Field name="email" type="email" value={formik.values.email} onChange={formik.handleChange}/>
+                    <label id='password'>Password: </label>
                     <Field name="password" type="password" value={formik.values.password}
                            onChange={formik.handleChange}/>
-                    <button type="submit">Submit</button>
+                    <SimpleCustomButton type={"submit"} text={"Submit"}>Submit</SimpleCustomButton>
                 </Form>
             </Formik>
-        </div>
+        </>
     )
 }

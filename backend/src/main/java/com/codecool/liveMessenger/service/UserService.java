@@ -27,6 +27,10 @@ public class UserService {
         userDAO.addUser(user);
     }
 
+    public User getUserByEmail(String email) {
+        return userDAO.getUserByEmail(email);
+    }
+
     public void deleteUser(UUID userId) {
         userDAO.deleteUser(userId);
     }
