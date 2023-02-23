@@ -1,7 +1,8 @@
 import React from "react";
 import {Button, createTheme, TextField, ThemeProvider} from "@mui/material";
-import SaveIcon from '@material-ui/icons/Save';
 import '../styles/UserPage.css'
+import SaveIcon from '@mui/icons-material/Save';
+
 
 function SetUserInfo({labelForTextArea}) {
     const theme = createTheme({
@@ -15,11 +16,14 @@ function SetUserInfo({labelForTextArea}) {
     return (<div>
             <ThemeProvider theme={theme}>
                 <TextField id="outlined-basic" label={labelForTextArea} variant="outlined" color='primary'/>
+                <br/>
                 <Button
                     variant="contained"
                     color="primary"
                     size="small"
-                    startIcon={<SaveIcon />}
+                    sx={{margin: '7px'}}
+                    startIcon={<SaveIcon sx={{color: 'blue'}}/>}
+
                 >
                     Save
                 </Button>
