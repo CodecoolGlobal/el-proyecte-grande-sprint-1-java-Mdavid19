@@ -40,7 +40,7 @@ export function Registration() {
     });
 
     return (
-        <>
+        <div className={'proba'}>
             <LandingPageLogo style={"position:fixed"}/>
             <Formik initialValues={formik.initialValues} onSubmit={formik.handleSubmit}>
                 <Form className="form_container">
@@ -71,6 +71,6 @@ export function Registration() {
                         Submit</Button>
                 </Form>
             </Formik>
-        </>
+        </div>
     )
 }
