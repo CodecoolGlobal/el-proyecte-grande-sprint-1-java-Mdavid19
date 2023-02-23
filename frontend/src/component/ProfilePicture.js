@@ -2,16 +2,18 @@ import React from 'react';
 import photo from '../images/default.png'
 
 
-const ProfilePicture = ({img_src}) => {
+const ProfilePicture = ({img_src, cssClassForPicture, cssClassForFrame}) => {
     return (
-        <div className={'profile-picture-frame'}>
-            <img src={img_src} alt="profile picture" className={'profile-picture'}/>
+        <div className={cssClassForFrame}>
+            <img src={img_src} alt="profile picture" className={cssClassForPicture}/>
         </div>
     );
 };
 
 ProfilePicture.defaultProps = {
-    img_src:photo
+    img_src:photo,
+    cssClassForPicture: 'profile-picture',
+    cssClassForFrame: 'profile-picture-frame'
 }
 
 export default ProfilePicture;
