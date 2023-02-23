@@ -1,6 +1,3 @@
-
-
-
 import React from 'react';
 import photo from '../images/ccLivelogo.png';
 import {Link} from "react-router-dom";
