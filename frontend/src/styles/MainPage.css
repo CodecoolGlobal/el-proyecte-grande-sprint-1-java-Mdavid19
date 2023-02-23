@@ -64,3 +64,12 @@
   height: 150px;
 }
 
+.friends-list-text{
+  color: white;
+}
+
+.friend-list-card{
+  border: 2px solid grey;
+  border-radius: 4px;
+
+}
