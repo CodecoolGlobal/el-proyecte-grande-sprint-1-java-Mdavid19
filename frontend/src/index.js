@@ -6,6 +6,7 @@ import {LandingPage} from "./pages/LandingPage";
 import MainPage from "./pages/MainPage";
 import {Registration} from "./pages/Registration";
 import UserProfile from "./pages/UserProfile";
+import LoginPage from "./pages/LoginPage";
 
 
 const root = ReactDOM.createRoot(document.getElementById('root'));
@@ -19,6 +20,9 @@ root.render(
             </Routes>
             <Routes>
                 <Route path='/main' element={<MainPage/>}/>
+            </Routes>
+            <Routes>
+                <Route path='/login' element={<LoginPage/>}/>
             </Routes>
         </Router>
     </React.StrictMode>
