@@ -17,15 +17,10 @@
 
 .add-user-button{
   position: absolute;
-  top: 170px;
+  top: 160px;
   left: 250px;
 }
 
-.edit-user-btn{
-  position: absolute;
-  top: 20px;
-  right: 30px;
-}
 
 .user-name{
   font-weight: bold;
@@ -71,5 +66,18 @@
 .friend-list-card{
   border: 2px solid grey;
   border-radius: 4px;
+
+}
+.logout-btn{
+  position: absolute;
+  top: 20px;
+  right: 30px;
+
+}
+
+.edit-user-btn{
+  position: absolute;
+  top: 20px;
+  right: 80px;
 
 }

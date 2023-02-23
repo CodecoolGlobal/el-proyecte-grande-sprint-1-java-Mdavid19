@@ -17,7 +17,7 @@ const BasicFriendList = () => {
                     </ListItem>
                     <Divider/>
                     <ListItem disablePadding>
-                        <ListItemButton component="a" href="#simple-list">
+                        <ListItemButton component="a" href="#">
                             <ListItemText primary="Dwayne The Rock Johnson"  className={'friends-list-text'}/>
                             <ListItemIcon>
                                 <Brightness1RoundedIcon sx={{ color:'red'}}/>
@@ -37,6 +37,15 @@ const BasicFriendList = () => {
                     <ListItem disablePadding>
                         <ListItemButton component="a" href="#simple-list" >
                             <ListItemText primary="Tomi"  className={'friends-list-text'}/>
+                            <ListItemIcon>
+                                <Brightness1RoundedIcon sx={{ color:'red'}}/>
+                            </ListItemIcon>
+                        </ListItemButton>
+                    </ListItem>
+                    <Divider/>
+                    <ListItem disablePadding>
+                        <ListItemButton component="a" href="#simple-list" >
+                            <ListItemText primary="Nem Jövőbeli Zoty"  className={'friends-list-text'}/>
                             <ListItemIcon>
                                 <Brightness1RoundedIcon sx={{ color:'red'}}/>
                             </ListItemIcon>
