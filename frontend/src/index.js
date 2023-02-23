@@ -5,6 +5,7 @@ import reportWebVitals from './reportWebVitals';
 import {LandingPage} from "./LandingPage";
 import MainPage from "./MainPage";
 import {Registration} from "./Registration";
+import LoginPage from "./LoginPage";
 
 
 const root = ReactDOM.createRoot(document.getElementById('root'));
@@ -17,6 +18,9 @@ root.render(
             </Routes>
             <Routes>
                 <Route path='/main' element={<MainPage/>}/>
+            </Routes>
+            <Routes>
+                <Route path='/login' element={<LoginPage/>}/>
             </Routes>
         </Router>
     </React.StrictMode>
