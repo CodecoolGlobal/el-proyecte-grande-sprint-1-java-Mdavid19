@@ -6,26 +6,6 @@
     box-sizing: border-box;
 }
 
-input {
-    border-radius: 5px;
-    border-color: #00299c;
-    margin: 0 0 5px;
-}
-
-label {
-    color: #000000;
-}
-
-button {
-    border: none;
-    color: #ffffff;
-    padding: 0.5rem 1rem;
-    font-size: 20px;
-    border-radius: 5px;
-    background-color: #000000;
-    margin: 10px 0;
-}
-
 .up-left {
     position: relative;
 }
