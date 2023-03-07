@@ -28,10 +28,11 @@ export function Registration() {
             userName: '',
             email: '',
             password: '',
-            userId: '',
+            id: '',
             statusMessage: '',
         },
         onSubmit: async (values, actions) => {
+            debugger;
             const dataJson = JSON.stringify(values)
             await fetchSendUser(url, dataJson, config)
             actions.resetForm()
@@ -45,20 +46,20 @@ export function Registration() {
             <Formik initialValues={formik.initialValues} onSubmit={formik.handleSubmit}>
                 <Form className="form_container">
                     <h1>Registration</h1>
-                    <Input
-                        placeholderText="User Name"
+                    <input
+                        // placeholderText="User Name"
                         name="userName"
                         type="text"
                         value={formik.values.userName}
                         onChange={formik.handleChange}/>
-                    <Input
-                        placeholderText="E-mail"
+                    <input
+                        // placeholderText="E-mail"
                         name="email"
                         type="text"
                         value={formik.values.email}
                         onChange={formik.handleChange}/>
-                    <Input
-                        placeholderText="Password"
+                    <input
+                        // placeholderText="Password"
                         name="password"
                         type="password"
                         value={formik.values.password}

@@ -1,6 +1,6 @@
 package com.codecool.liveMessenger.controller;
 
-import com.codecool.liveMessenger.model.Chatter;
+import com.codecool.liveMessenger.model.ChatUser;
 import com.codecool.liveMessenger.service.UserService;
 import org.springframework.web.bind.annotation.*;
 
@@ -17,20 +17,20 @@ public class RegistrationController {
     }
 
     @GetMapping("/all")
-    public List<Chatter> displayUsers() {
+    public List<ChatUser> displayUsers() {
         return userService.getUsers();
     }
 
-    @GetMapping
-    public Chatter getUser(Long userId) {
-        return userService.getUser(userId);
+    @GetMapping("/{userId}")
+    public ChatUser getUser(@PathVariable Long userId) {
+        return userService.getUserById(userId);
     }
 
     @PostMapping
-    public void registerUser(@RequestBody Chatter chatter) {
-        Chatter builtChatter = Chatter.builder().userName(chatter.getUserName())
-                .email(chatter.getEmail())
-                .password(chatter.getPassword()).build();
-        userService.addUser(builtChatter);
+    public void registerUser(@RequestBody ChatUser chatUser) {
+        ChatUser builtChatUser = ChatUser.builder().userName(chatUser.getUserName())
+                .email(chatUser.getEmail())
+                .password(chatUser.getPassword()).build();
+        userService.addUser(builtChatUser);
     }
 }

@@ -8,11 +8,11 @@ import '../styles/UserPage.css'
 const UserProfile = () => {
     return (
         <div className='proba'>
-            <div className='chatter-name'>
+            <div className='chatUser-name'>
                 <h1>Próba Bence</h1>
             </div>
             <div className='container-for-picture' >
-                <ProfilePicture cssClassForPicture='chatter-page-profile-picture' cssClassForFrame='chatter-page-profile-picture-frame' />
+                <ProfilePicture cssClassForPicture='chatUser-page-profile-picture' cssClassForFrame='chatUser-page-profile-picture-frame' />
                 <button className='button-for-picture'>Upload profile picture</button>
                 <br/>
                 <button className='button-for-picture'>Upload cover picture</button>
