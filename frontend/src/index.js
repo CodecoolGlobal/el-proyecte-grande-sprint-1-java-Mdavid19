@@ -16,7 +16,7 @@ root.render(
             <Routes>
                 <Route path='/' element={<LandingPage/>}/>
                 <Route path='/registration' element={<Registration/>}/>
-                <Route path='/chatter-profile' element={<UserProfile/>}/>
+                <Route path='/chatUser-profile' element={<UserProfile/>}/>
             </Routes>
             <Routes>
                 <Route path='/main' element={<MainPage/>}/>

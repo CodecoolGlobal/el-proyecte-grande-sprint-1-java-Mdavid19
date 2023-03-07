@@ -1,9 +1,9 @@
 package com.codecool.liveMessenger.service.DAO;
 
-import com.codecool.liveMessenger.model.Chatter;
+import com.codecool.liveMessenger.model.ChatUser;
 import org.springframework.data.jpa.repository.JpaRepository;
 
-public interface UserRepository extends JpaRepository<Chatter, Long> {
-    Chatter findUserById(Long userId);
-    Chatter findUserByEmail(String email);
+public interface UserRepository extends JpaRepository<ChatUser, Long> {
+    ChatUser findUserById(Long userId);
+    ChatUser findUserByEmail(String email);
 }

@@ -9,7 +9,7 @@ import lombok.NoArgsConstructor;
 @Data
 @NoArgsConstructor
 @Builder
-public class Chatter {
+public class ChatUser {
     private String userName;
     @Column(unique = true)
     private String email;
@@ -20,7 +20,7 @@ public class Chatter {
     @Builder.Default
     private String statusMessage = null;
 
-    public Chatter(String userName, String email, String password, Long id, String statusMessage) {
+    public ChatUser(String userName, String email, String password, Long id, String statusMessage) {
         this.userName = userName;
         this.email = email;
         this.password = password;
