@@ -1,41 +1,44 @@
 package com.codecool.liveMessenger.service;
 
-import com.codecool.liveMessenger.model.User;
-import com.codecool.liveMessenger.service.DAO.UserDAO;
+import com.codecool.liveMessenger.model.Chatter;
+import com.codecool.liveMessenger.service.DAO.UserRepository;
 import org.springframework.stereotype.Service;
 
-import java.util.Set;
-import java.util.UUID;
+import java.util.List;
 
 @Service
 public class UserService {
-    private UserDAO userDAO;
+    private UserRepository userRepository;
 
-    public UserService(UserDAO userDAO) {
-        this.userDAO = userDAO;
+    public UserService(UserRepository userRepository) {
+        this.userRepository = userRepository;
     }
 
-    public Set<User> getUsers() {
-        return userDAO.getUsers();
+    public List<Chatter> getUsers() {
+        return userRepository.findAll();
     }
 
-    public User getUser(UUID userId) {
-        return userDAO.getUser(userId);
+    public Chatter getUser(Long userId) {
+        return userRepository.findUserById(userId);
     }
 
-    public void addUser(User user) {
-        userDAO.addUser(user);
+    public void addUser(Chatter chatter) {
+        userRepository.save(chatter);
     }
 
-    public User getUserByEmail(String email) {
-        return userDAO.getUserByEmail(email);
+    public Chatter getUserByEmail(String email) {
+        return userRepository.findUserByEmail(email);
     }
 
-    public void deleteUser(UUID userId) {
-        userDAO.deleteUser(userId);
+    public void deleteUser(Long userId) {
+        if (userRepository.findUserById(userId) != null) {
+            userRepository.deleteById(userId);
+        }
     }
 
-    public void updateUser(UUID userId, String userName) {
-        userDAO.updateUserName(userId, userName);
+    public void updateUserName(Long userId, String userName) {
+        Chatter chatterToUpdate = userRepository.findUserById(userId);
+        chatterToUpdate.setUserName(userName);
+        userRepository.save(chatterToUpdate);
     }
 }

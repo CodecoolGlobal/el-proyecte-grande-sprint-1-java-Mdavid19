@@ -1,6 +1,5 @@
 package com.codecool.liveMessenger.controller;
 
-import com.codecool.liveMessenger.model.User;
 import com.codecool.liveMessenger.service.UserService;
 import org.springframework.web.bind.annotation.*;
 
