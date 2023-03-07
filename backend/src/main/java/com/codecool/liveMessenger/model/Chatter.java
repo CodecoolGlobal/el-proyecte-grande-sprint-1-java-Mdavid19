@@ -1,28 +1,30 @@
 package com.codecool.liveMessenger.model;
 
+import jakarta.persistence.*;
 import lombok.Builder;
 import lombok.Data;
 import lombok.NoArgsConstructor;
 
-import java.util.UUID;
-
+@Entity
 @Data
 @NoArgsConstructor
 @Builder
-public class User {
+public class Chatter {
     private String userName;
+    @Column(unique = true)
     private String email;
     private String password;
-    @Builder.Default
-    private UUID userId = UUID.randomUUID();
+    @Id
+    @GeneratedValue(strategy = GenerationType.SEQUENCE)
+    private Long id;
     @Builder.Default
     private String statusMessage = null;
 
-    public User(String userName, String email, String password, UUID userId, String statusMessage) {
+    public Chatter(String userName, String email, String password, Long id, String statusMessage) {
         this.userName = userName;
         this.email = email;
         this.password = password;
-        this.userId = userId;
+        this.id = id;
         this.statusMessage = statusMessage;
     }
 
@@ -40,5 +42,13 @@ public class User {
 
     public void setStatusMessage(String statusMessage) {
         this.statusMessage = statusMessage;
+    }
+
+    public void setId(Long id) {
+        this.id = id;
+    }
+
+    public Long getId() {
+        return id;
     }
 }
