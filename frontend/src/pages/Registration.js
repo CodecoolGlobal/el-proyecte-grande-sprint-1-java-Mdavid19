@@ -2,11 +2,10 @@ import {Form, Formik, useFormik} from "formik";
 import axios from "../AxiosInstance";
 import '../styles/Registration.css';
 import LandingPageLogo from "../component/LandingPageLogo";
-import Input from "../component/Input";
-import {Button} from "@mui/material";
+import {Button, TextField} from "@mui/material";
 
 export function Registration() {
-    const url = 'http://localhost:8080/register';
+    const url = '/register';
     const buttonStyle = {
         margin: '30px 0'
     }
@@ -46,20 +45,22 @@ export function Registration() {
             <Formik initialValues={formik.initialValues} onSubmit={formik.handleSubmit}>
                 <Form className="form_container">
                     <h1>Registration</h1>
-                    <input
-                        // placeholderText="User Name"
+                    <TextField
+                        label="User Name"
                         name="userName"
                         type="text"
                         value={formik.values.userName}
                         onChange={formik.handleChange}/>
-                    <input
-                        // placeholderText="E-mail"
+                    <br/>
+                    <TextField
+                        label="E-mail"
                         name="email"
                         type="text"
                         value={formik.values.email}
                         onChange={formik.handleChange}/>
-                    <input
-                        // placeholderText="Password"
+                    <br/>
+                    <TextField
+                        label="Password"
                         name="password"
                         type="password"
                         value={formik.values.password}
