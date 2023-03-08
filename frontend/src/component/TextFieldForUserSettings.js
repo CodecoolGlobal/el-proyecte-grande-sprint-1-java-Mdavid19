@@ -25,7 +25,6 @@ function SetUserInfo({labelForTextArea}) {
     const [content, setContent] = useState("");
 
     const handleChange = () => {
-        const data = JSON.stringify(content)
         fetchSendUser(url, data, config)
     }
 
