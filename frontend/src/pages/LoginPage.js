@@ -7,7 +7,7 @@ import Input from "../component/Input";
 const LoginPage = () => {
 
     return (
-        <div className={'center'}>
+        <div className={['center', 'proba'].join(" ")}>
             <LandingPageLogo style={"position:fixed"}/>
             <h1>Login</h1>
             <FormControl>

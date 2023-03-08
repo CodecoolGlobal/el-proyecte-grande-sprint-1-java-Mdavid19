@@ -1,11 +1,10 @@
 package com.codecool.liveMessenger.controller;
 
-import com.codecool.liveMessenger.model.User;
+import com.codecool.liveMessenger.model.ChatUser;
 import com.codecool.liveMessenger.service.UserService;
 import org.springframework.web.bind.annotation.*;
 
-import java.util.Set;
-import java.util.UUID;
+import java.util.List;
 
 @CrossOrigin(origins = "http://localhost:3000")
 @RestController
@@ -18,20 +17,20 @@ public class RegistrationController {
     }
 
     @GetMapping("/all")
-    public Set<User> displayUsers() {
+    public List<ChatUser> displayUsers() {
         return userService.getUsers();
     }
 
-    @GetMapping
-    public User getUser(UUID userId) {
-        return userService.getUser(userId);
+    @GetMapping("/{userId}")
+    public ChatUser getUser(@PathVariable Long userId) {
+        return userService.getUserById(userId);
     }
 
     @PostMapping
-    public void registerUser(@RequestBody User user) {
-        User builtUser = User.builder().userName(user.getUserName())
-                .email(user.getEmail())
-                .password(user.getPassword()).build();
-        userService.addUser(builtUser);
+    public void registerUser(@RequestBody ChatUser chatUser) {
+        ChatUser builtChatUser = ChatUser.builder().userName(chatUser.getUserName())
+                .email(chatUser.getEmail())
+                .password(chatUser.getPassword()).build();
+        userService.addUser(builtChatUser);
     }
 }
