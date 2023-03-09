@@ -10,4 +10,6 @@ import java.util.List;
 @Repository
 public interface MessageRepository extends JpaRepository<Message, Long> {
     public List<Message> getMessagesBySenderIdAndReceiverId(Long senderId, Long receiverId);
+
+    public List<Message> findAllByOrderByDate();
 }
