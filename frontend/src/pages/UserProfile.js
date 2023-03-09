@@ -1,11 +1,14 @@
 import React from 'react';
 import ProfilePicture from "../component/ProfilePicture";
 import SetUserInfo from '../component/TextFieldForUserSettings'
+import ImageUploader from '../component/ImageUploader'
 import '../styles/UserPage.css'
 
 
 
 const UserProfile = () => {
+
+
     return (
         <div className='proba'>
             <div className='chatUser-name'>
@@ -13,9 +16,9 @@ const UserProfile = () => {
             </div>
             <div className='container-for-picture' >
                 <ProfilePicture cssClassForPicture='chatUser-page-profile-picture' cssClassForFrame='chatUser-page-profile-picture-frame' />
-                <button className='button-for-picture'>Upload profile picture</button>
+                <ImageUploader  pictureText="profile"/>
                 <br/>
-                <button className='button-for-picture'>Upload cover picture</button>
+                <ImageUploader pictureText="cover"/>
             </div>
             <div className='position-for-inputs'>
                 <SetUserInfo labelForTextArea="Change your username" inputName="userName"/>
