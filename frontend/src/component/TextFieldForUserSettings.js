@@ -14,7 +14,7 @@ function SetUserInfo({labelForTextArea, inputName}) {
         },
     });
 
-    const url = "/user-profile"
+    const url = "/chat-user-profile"
 
     const config = {
         headers: {
