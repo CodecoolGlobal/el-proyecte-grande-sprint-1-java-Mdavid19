@@ -5,6 +5,7 @@ import com.codecool.liveMessenger.service.DAO.UserRepository;
 import org.springframework.stereotype.Service;
 
 import java.util.List;
+import java.util.Map;
 
 @Service
 public class UserService {
@@ -36,9 +37,36 @@ public class UserService {
         }
     }
 
-    public void updateUserName(Long userId, String userName) {
+    public void updateUserInfo(Long userId, Map<String, String> userInfo) {
         ChatUser chatUserToUpdate = userRepository.findUserById(userId);
-        chatUserToUpdate.setUserName(userName);
-        userRepository.save(chatUserToUpdate);
+        if (userInfo.get("fieldName").equals("userName")) {
+            updateUserName(chatUserToUpdate, userInfo.get("userInfo"));
+        } else if (userInfo.get("fieldName").equals("email")) {
+            updateUserEmail(chatUserToUpdate, userInfo.get("userInfo"));
+        } else if (userInfo.get("fieldName").equals("password")) {
+            updateUserPassword(chatUserToUpdate, userInfo.get("userInfo"));
+        } else if (userInfo.get("fieldName").equals("statusMessage")) {
+            updateUserStatusMessage(chatUserToUpdate, userInfo.get("userInfo"));
+        }
+    }
+
+    private void updateUserName(ChatUser user, String userName) {
+        user.setUserName(userName);
+        userRepository.save(user);
+    }
+
+    private void updateUserEmail(ChatUser user, String email) {
+        user.setEmail(email);
+        userRepository.save(user);
+    }
+
+    private void updateUserStatusMessage(ChatUser user, String message) {
+        user.setStatusMessage(message);
+        userRepository.save(user);
+    }
+
+    private void updateUserPassword(ChatUser user, String password) {
+        user.setPassword(password);
+        userRepository.save(user);
     }
 }
