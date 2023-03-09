@@ -31,7 +31,6 @@ export function Registration() {
             statusMessage: '',
         },
         onSubmit: async (values, actions) => {
-            debugger;
             const dataJson = JSON.stringify(values)
             await fetchSendUser(url, dataJson, config)
             actions.resetForm()

@@ -5,7 +5,7 @@ import SaveIcon from '@mui/icons-material/Save';
 import axios from "../AxiosInstance";
 
 
-function SetUserInfo({labelForTextArea}) {
+function SetUserInfo({labelForTextArea, inputName}) {
     const theme = createTheme({
         palette: {
             primary: {
@@ -14,7 +14,7 @@ function SetUserInfo({labelForTextArea}) {
         },
     });
 
-    const url = "/user-profile"
+    const url = "/chat-user-profile"
 
     const config = {
         headers: {
@@ -25,11 +25,15 @@ function SetUserInfo({labelForTextArea}) {
     const [content, setContent] = useState("");
 
     const handleChange = () => {
-        const data = JSON.stringify(content)
-        fetchSendUser(url, data, config)
+        sendUserInfoChanges(url, data, config)
     }
 
-    const fetchSendUser = (url, body, config) => {
+    const data = {
+        fieldName: inputName,
+        userInfo: content
+    }
+
+    const sendUserInfoChanges = (url, body, config) => {
         try {
             axios.post(url, body, config)
         } catch (error) {
@@ -39,7 +43,7 @@ function SetUserInfo({labelForTextArea}) {
 
     return (<div>
             <ThemeProvider theme={theme}>
-                <TextField id="outlined-basic" label={labelForTextArea} variant="outlined" color='primary' onChange={(e)=> {setContent(e.target.value)}}/>
+                <TextField id="outlined-basic" label={labelForTextArea} variant="outlined" color='primary' name={inputName} onChange={(e)=> {setContent(e.target.value)}}/>
                 <br/>
                 <Button
                     variant="contained"
