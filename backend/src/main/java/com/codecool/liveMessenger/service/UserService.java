@@ -69,4 +69,10 @@ public class UserService {
         user.setPassword(password);
         userRepository.save(user);
     }
+
+    public void saveuserProfilePicture(Long userId, String profilePicture) {
+        ChatUser chatUserToUpdate = userRepository.findUserById(userId);
+        chatUserToUpdate.setProfilePicture(profilePicture);
+        userRepository.save(chatUserToUpdate);
+    }
 }

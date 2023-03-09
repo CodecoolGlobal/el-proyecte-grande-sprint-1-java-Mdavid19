@@ -19,13 +19,17 @@ public class ChatUser {
     private Long id;
     @Builder.Default
     private String statusMessage = null;
+    private String profilePicture;
+    private String coverPicture;
 
-    public ChatUser(String userName, String email, String password, Long id, String statusMessage) {
+    public ChatUser(String userName, String email, String password, Long id, String statusMessage, String profilePicture, String coverPicture) {
         this.userName = userName;
         this.email = email;
         this.password = password;
         this.id = id;
         this.statusMessage = statusMessage;
+        this.profilePicture = profilePicture;
+        this.coverPicture = coverPicture;
     }
 
     public void setUserName(String userName) {
