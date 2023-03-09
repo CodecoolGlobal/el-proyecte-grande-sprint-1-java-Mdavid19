@@ -5,6 +5,7 @@ import com.codecool.liveMessenger.model.repositories.MessageRepository;
 import lombok.RequiredArgsConstructor;
 import org.springframework.stereotype.Service;
 
+import java.time.LocalDate;
 import java.util.List;
 @Service
 @RequiredArgsConstructor
@@ -20,6 +21,10 @@ public class MessageService {
 
     public List<Message> getMessagesBetweenUsers(Long senderId, Long receiverId) {
         return messageRepository.getMessagesBySenderIdAndReceiverId(senderId, receiverId);
+    }
+
+    public List<Message> getAllMessage(){
+        return messageRepository.findAllByOrderByDate();
     }
 
 }
