@@ -1,11 +1,10 @@
 import React, {useState} from 'react';
-import {Box, Button, InputAdornment, TextField} from "@mui/material";
+import {Box, Button, InputAdornment, TextField, Typography} from "@mui/material";
 import axios from "axios";
 
 
 const ChatPanel = () => {
     const [content, setContent] = useState("")
-    const [messageLength, setMessageLength] = useState()
 
 
     const sendDataToBackendApi = (url,body,config) =>{
@@ -35,22 +34,27 @@ const ChatPanel = () => {
         let response = await fetch("/api/message", {
             method:'GET'
         })
-        let data  = await response.json()
-        console.log(data.length)
-        setMessageLength(data.length)
-
-
+        let data = await response.json();
+        return data
     }
 
-    setTimeout(getAllMessageFromBackend,1000)
+    setTimeout(displayMessages,1000)
 
-    function displayMessages(){
-
+    async function displayMessages() {
+        let messages = await getAllMessageFromBackend();
+        let box = document.getElementById("chatBox");
+        if (box.children.length < messages.length) {
+            for (let i = box.children.length; i <= messages.length; i++) {
+                let p = document.createElement("p")
+                p.innerText = messages[i].content
+                box.appendChild(p)
+            }
+        }
     }
 
     return (
         <div className={'chat-panel'}>
-            <Box sx={{width: '100%', height: '90%', backgroundColor: 'primary.dark'}}/>
+            <Box id="chatBox" sx={{width: '100%', height: '90%', backgroundColor: 'primary.dark'}}/>
 
             <TextField fullWidth InputProps={{
                 endAdornment: (
