@@ -6,6 +6,8 @@ import '../styles/UserPage.css'
 
 
 const UserProfile = () => {
+
+
     return (
         <div className='proba'>
             <div className='chatUser-name'>

@@ -1,5 +1,6 @@
 package com.codecool.liveMessenger.controller;
 
+import com.codecool.liveMessenger.model.ChatUser;
 import com.codecool.liveMessenger.service.UserService;
 import org.springframework.web.bind.annotation.*;
 
@@ -13,6 +14,13 @@ public class UserProfileController {
 
     public UserProfileController(UserService userService) {
         this.userService = userService;
+    }
+
+    @GetMapping
+    public String getUserName() {
+//     TODO later change id to session id
+        ChatUser user = userService.getUserById(1L);
+        return user.getUserName();
     }
 
     @PostMapping
