@@ -2,36 +2,36 @@ import React, {useState} from "react";
 import axios from "../AxiosInstance";
 
 export default function ImageUploader({pictureText}) {
-    const [file, setFile] = useState(null)
 
-    const handleSubmit = async (e) => {
-        e.preventDefault()
+    const [file, setFile] = useState();
 
-        const formData = new FormData()
-        formData.append('file', file)
-
-        try {
-            await axios.post('/upload', formData, {
-                headers: {
-                    'Content-Type' : 'multipart/form-data'
-                }
-            })
-        } catch (error) {
-            console.log(error)
-        }
+    function handleChange(e) {
+        setFile(e.target.files[0]);
     }
 
-    const handleFileChange = (e) => {
-        setFile(e.target.files[0])
+    function handleSubmit(event) {
+        event.preventDefault();
+        const url = '/chat-user-profile/upload';
+        const formData = new FormData();
+        formData.append('file', file);
+        formData.append('fileName', file.name);
+        const config = {
+            headers: {
+                'content-type': 'multipart/form-data',
+            },
+        };
+        axios.post(url, formData, config).then((response) => {
+            console.log(response.data);
+        });
     }
+
     return (
-        <form onSubmit={handleSubmit}>
-            <input type="file" onChange={handleFileChange}/>
-            <button type="submit">Upload {pictureText} picture
-            </button>
-            <label className="custom-file-upload">
-            </label>
-        </form>
-    )
+        <div>
+            <form onSubmit={handleSubmit}>
+                <input type="file" onChange={handleChange}/>
+                <button type="submit">Upload {pictureText} picture</button>
+            </form>
+        </div>
+    );
 }
 
