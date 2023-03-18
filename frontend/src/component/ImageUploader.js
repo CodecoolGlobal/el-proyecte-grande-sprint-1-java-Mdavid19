@@ -14,14 +14,18 @@ export default function ImageUploader({pictureText}) {
         const url = '/chat-user-profile/upload';
         const formData = new FormData();
         formData.append('file', file);
-        formData.append('fileName', file.name);
+        formData.append('pictureType', new Blob([JSON.stringify({
+            "pictureType": pictureText
+        })], {
+            type: "application/json"
+        }))
         const config = {
             headers: {
                 'content-type': 'multipart/form-data',
             },
         };
         axios.post(url, formData, config).then((response) => {
-            console.log(response.data);
+            console.log(response);
         });
     }
 
