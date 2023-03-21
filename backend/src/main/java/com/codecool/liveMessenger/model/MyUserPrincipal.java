@@ -2,7 +2,6 @@ package com.codecool.liveMessenger.model;
 
 import org.springframework.security.core.GrantedAuthority;
 import org.springframework.security.core.userdetails.UserDetails;
-import org.springframework.stereotype.Service;
 
 import java.util.Collection;
 public class MyUserPrincipal implements UserDetails {
@@ -20,6 +19,10 @@ public class MyUserPrincipal implements UserDetails {
     @Override
     public String getPassword() {
         return user.getPassword();
+    }
+
+    public String getEmail() {
+        return user.getEmail();
     }
 
     @Override
