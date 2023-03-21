@@ -14,11 +14,7 @@ export default function ImageUploader({pictureText}) {
         const url = '/chat-user-profile/upload';
         const formData = new FormData();
         formData.append('file', file);
-        formData.append('pictureType', new Blob([JSON.stringify({
-            "pictureType": pictureText
-        })], {
-            type: "application/json"
-        }))
+        formData.append('pictureType', pictureText)
         const config = {
             headers: {
                 'content-type': 'multipart/form-data',

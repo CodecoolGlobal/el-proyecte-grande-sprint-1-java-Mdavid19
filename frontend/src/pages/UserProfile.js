@@ -12,7 +12,7 @@ const UserProfile = () => {
 
     return (
         <div className='proba'>
-            {/*<HeaderForUserName />*/}
+            <HeaderForUserName />
             <div className='container-for-picture' >
                 <ProfilePicture cssClassForPicture='user-page-profile-picture' cssClassForFrame='user-page-profile-picture-frame' />
                 <ImageUploader  pictureText="profile"/>
