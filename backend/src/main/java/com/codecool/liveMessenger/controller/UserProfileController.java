@@ -24,7 +24,7 @@ public class UserProfileController {
     public String getUserName() {
 //     TODO later change id to session id
         ChatUser user = userService.getUserById(1L);
-        return user.getUserName();
+        return user.getChatUserName();
     }
 
     @PostMapping

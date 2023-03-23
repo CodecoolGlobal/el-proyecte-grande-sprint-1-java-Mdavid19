@@ -28,7 +28,7 @@ public class RegistrationController {
 
     @PostMapping
     public void registerUser(@RequestBody ChatUser chatUser) {
-        ChatUser builtChatUser = ChatUser.builder().userName(chatUser.getUserName())
+        ChatUser builtChatUser = ChatUser.builder().chatUserName(chatUser.getChatUserName())
                 .email(chatUser.getEmail())
                 .password(chatUser.getPassword()).build();
         userService.addUser(builtChatUser);
