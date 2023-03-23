@@ -24,9 +24,9 @@ export function Registration() {
 
     const formik = useFormik({
         initialValues: {
-            userName: '',
-            email: '',
-            password: '',
+            chatUserName: '',
+            chatUserEmail: '',
+            chatUserPassword: '',
             id: '',
             statusMessage: '',
         },
@@ -46,23 +46,23 @@ export function Registration() {
                     <h1>Registration</h1>
                     <TextField
                         label="User Name"
-                        name="userName"
+                        name="chatUserName"
                         type="text"
-                        value={formik.values.userName}
+                        value={formik.values.chatUserName}
                         onChange={formik.handleChange}/>
                     <br/>
                     <TextField
                         label="E-mail"
-                        name="email"
+                        name="chatUserEmail"
                         type="text"
-                        value={formik.values.email}
+                        value={formik.values.chatUserEmail}
                         onChange={formik.handleChange}/>
                     <br/>
                     <TextField
                         label="Password"
-                        name="password"
+                        name="chatUserPassword"
                         type="password"
-                        value={formik.values.password}
+                        value={formik.values.chatUserPassword}
                         onChange={formik.handleChange}/>
                     <Button
                         type="submit"
