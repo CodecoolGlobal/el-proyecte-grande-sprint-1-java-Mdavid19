@@ -1,7 +1,13 @@
 package com.codecool.liveMessenger.controller;
 
 import com.codecool.liveMessenger.model.ChatUser;
+import com.codecool.liveMessenger.security.request.AuthenticationRequest;
+import com.codecool.liveMessenger.security.request.RegisterRequest;
+import com.codecool.liveMessenger.security.response.AuthenticationResponse;
+import com.codecool.liveMessenger.service.AuthenticationService;
 import com.codecool.liveMessenger.service.UserService;
+import lombok.RequiredArgsConstructor;
+import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.*;
 
 import java.util.List;
@@ -9,12 +15,11 @@ import java.util.List;
 @CrossOrigin(origins = "http://localhost:3000")
 @RestController
 @RequestMapping("/register")
+@RequiredArgsConstructor
 public class RegistrationController {
     private UserService userService;
+    private AuthenticationService authService;
 
-    public RegistrationController(UserService userService) {
-        this.userService = userService;
-    }
 
     @GetMapping("/all")
     public List<ChatUser> displayUsers() {
@@ -27,10 +32,7 @@ public class RegistrationController {
     }
 
     @PostMapping
-    public void registerUser(@RequestBody ChatUser chatUser) {
-        ChatUser builtChatUser = ChatUser.builder().chatUserName(chatUser.getChatUserName())
-                .email(chatUser.getEmail())
-                .password(chatUser.getPassword()).build();
-        userService.addUser(builtChatUser);
+    public ResponseEntity<AuthenticationResponse> registerUser(@RequestBody RegisterRequest request) {
+       return ResponseEntity.ok(authService.register(request));
     }
 }
