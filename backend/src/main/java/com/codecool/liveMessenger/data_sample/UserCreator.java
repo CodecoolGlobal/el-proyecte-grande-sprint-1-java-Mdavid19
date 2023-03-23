@@ -10,7 +10,7 @@ public class UserCreator {
     private final UserService userService;
 
     public void initialize() {
-        userService.addUser(ChatUser.builder().userName("Sanyi").email("sanyi@vagyok.hu").password("password").build());
+        userService.addUser(ChatUser.builder().chatUserName("Sanyi").email("sanyi@vagyok.hu").password("password").build());
     }
 
     @Autowired

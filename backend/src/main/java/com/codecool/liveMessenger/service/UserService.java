@@ -1,7 +1,7 @@
 package com.codecool.liveMessenger.service;
 
 import com.codecool.liveMessenger.model.ChatUser;
-import com.codecool.liveMessenger.service.DAO.UserRepository;
+import com.codecool.liveMessenger.model.repositories.UserRepository;
 import org.springframework.stereotype.Service;
 
 import java.util.List;
@@ -28,7 +28,7 @@ public class UserService {
     }
 
     public ChatUser getUserByEmail(String email) {
-        return userRepository.findUserByEmail(email);
+        return userRepository.findUserByEmail(email).orElse(null);
     }
 
     public void deleteUser(Long userId) {
@@ -51,7 +51,7 @@ public class UserService {
     }
 
     private void updateUserName(ChatUser user, String userName) {
-        user.setUserName(userName);
+        user.setChatUserName(userName);
         userRepository.save(user);
     }
 

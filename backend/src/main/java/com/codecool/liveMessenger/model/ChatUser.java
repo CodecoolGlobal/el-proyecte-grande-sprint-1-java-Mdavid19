@@ -1,16 +1,25 @@
 package com.codecool.liveMessenger.model;
 
 import jakarta.persistence.*;
+import lombok.AllArgsConstructor;
 import lombok.Builder;
 import lombok.Data;
 import lombok.NoArgsConstructor;
+import org.springframework.security.core.GrantedAuthority;
+import org.springframework.security.core.authority.SimpleGrantedAuthority;
+import org.springframework.security.core.userdetails.UserDetails;
+
+import java.util.Collection;
+import java.util.List;
 
 @Entity
 @Data
 @NoArgsConstructor
+@AllArgsConstructor
 @Builder
-public class ChatUser {
-    private String userName;
+public class ChatUser implements UserDetails {
+
+    private String chatUserName;
     @Column(unique = true)
     private String email;
     private String password;
@@ -22,18 +31,15 @@ public class ChatUser {
     private String profilePicture;
     private String coverPicture;
 
-    public ChatUser(String userName, String email, String password, Long id, String statusMessage, String profilePicture, String coverPicture) {
-        this.userName = userName;
-        this.email = email;
-        this.password = password;
-        this.id = id;
-        this.statusMessage = statusMessage;
-        this.profilePicture = profilePicture;
-        this.coverPicture = coverPicture;
-    }
+    @Enumerated(EnumType.STRING)
+    private Role role;
 
-    public void setUserName(String userName) {
-        this.userName = userName;
+    @OneToMany(mappedBy = "user")
+    List<Token> tokens;
+
+
+    public void setChatUserName(String userName) {
+        this.chatUserName = userName;
     }
 
     public void setEmail(String email) {
@@ -54,5 +60,35 @@ public class ChatUser {
 
     public Long getId() {
         return id;
+    }
+
+    @Override
+    public Collection<? extends GrantedAuthority> getAuthorities() {
+        return List.of(new SimpleGrantedAuthority(role.name()));
+    }
+
+    @Override
+    public String getUsername() {
+        return email;
+    }
+
+    @Override
+    public boolean isAccountNonExpired() {
+        return true;
+    }
+
+    @Override
+    public boolean isAccountNonLocked() {
+        return true;
+    }
+
+    @Override
+    public boolean isCredentialsNonExpired() {
+        return true;
+    }
+
+    @Override
+    public boolean isEnabled() {
+        return true;
     }
 }

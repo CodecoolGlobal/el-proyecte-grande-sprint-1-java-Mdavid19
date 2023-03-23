@@ -20,8 +20,8 @@ const LoginPage = () => {
         }
     }
     const data = {
-        userEmail: email,
-        userPassword: password
+        email: email,
+        password: password
     }
 
     const handleChange = () => {
