@@ -5,6 +5,7 @@ import com.codecool.liveMessenger.security.response.AuthenticationResponse;
 import com.codecool.liveMessenger.service.AuthenticationService;
 import com.codecool.liveMessenger.service.UserService;
 import lombok.RequiredArgsConstructor;
+import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.*;
 
@@ -15,7 +16,7 @@ import java.util.Map;
 @RequestMapping("/login")
 @RequiredArgsConstructor
 public class LoginController {
-
+    @Autowired
     private AuthenticationService service;
 
     @PostMapping

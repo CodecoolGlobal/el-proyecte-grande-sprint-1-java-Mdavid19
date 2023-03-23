@@ -3,6 +3,7 @@ package com.codecool.liveMessenger.security;
 import lombok.RequiredArgsConstructor;
 import org.springframework.context.annotation.Bean;
 import org.springframework.context.annotation.Configuration;
+import org.springframework.http.HttpMethod;
 import org.springframework.security.authentication.AuthenticationProvider;
 import org.springframework.security.config.annotation.web.builders.HttpSecurity;
 import org.springframework.security.config.annotation.web.configuration.EnableWebSecurity;
@@ -27,8 +28,8 @@ public class SecurityConfig {
         http
                 .csrf().disable()
                 .authorizeHttpRequests()
-                .requestMatchers("/login").permitAll() //TODO maybe this exists already in security we have to change
-                .requestMatchers("/register").permitAll()
+                .requestMatchers(HttpMethod.POST,"/login").permitAll() //TODO maybe this exists already in security we have to change
+                .requestMatchers(HttpMethod.POST,"/register").permitAll()
                 .anyRequest().authenticated()
                 .and()
                 .sessionManagement()

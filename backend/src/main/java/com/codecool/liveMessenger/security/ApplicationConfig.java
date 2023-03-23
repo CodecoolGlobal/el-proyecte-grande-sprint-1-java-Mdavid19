@@ -1,6 +1,7 @@
 package com.codecool.liveMessenger.security;
 
 import com.codecool.liveMessenger.model.repositories.UserRepository;
+import com.codecool.liveMessenger.service.JwtService;
 import lombok.RequiredArgsConstructor;
 import org.springframework.context.annotation.Bean;
 import org.springframework.context.annotation.Configuration;
@@ -42,5 +43,8 @@ public class ApplicationConfig {
         return config.getAuthenticationManager();
     }
 
-
+    @Bean
+    public JwtService jwtService(){
+        return new JwtService();
+    }
 }

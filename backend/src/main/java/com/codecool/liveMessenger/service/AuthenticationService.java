@@ -10,10 +10,8 @@ import com.codecool.liveMessenger.security.request.AuthenticationRequest;
 import com.codecool.liveMessenger.security.request.RegisterRequest;
 import com.codecool.liveMessenger.security.response.AuthenticationResponse;
 import lombok.RequiredArgsConstructor;
-import org.springframework.expression.ExpressionException;
 import org.springframework.security.authentication.AuthenticationManager;
 import org.springframework.security.authentication.UsernamePasswordAuthenticationToken;
-import org.springframework.security.core.userdetails.User;
 import org.springframework.security.core.userdetails.UsernameNotFoundException;
 import org.springframework.security.crypto.password.PasswordEncoder;
 import org.springframework.stereotype.Service;
@@ -29,7 +27,7 @@ public class AuthenticationService {
 
     public AuthenticationResponse register(RegisterRequest request){
         var user = ChatUser.builder()
-                .chatUserName(request.getChatUsername())
+                .chatUserName(request.getChatUserName())
                 .email(request.getChatUserEmail())
                 .password(passwordEncoder.encode(request.getChatUserPassword()))
                 .role(Role.USER)
@@ -66,7 +64,7 @@ public class AuthenticationService {
     }
 
     private void revokeAllUserTokens(ChatUser user) {
-        var validUserTokens = tokenRepository.findAllValidTokenByUser(user.getId());
+        var validUserTokens = tokenRepository.findAllValidTokenByUserId(user.getId());
         if(validUserTokens.isEmpty()) return;
         validUserTokens.forEach(token -> {
             token.setRevoked(true);

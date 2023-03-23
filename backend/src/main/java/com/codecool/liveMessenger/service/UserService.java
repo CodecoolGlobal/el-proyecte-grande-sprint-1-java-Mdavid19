@@ -28,7 +28,7 @@ public class UserService {
     }
 
     public ChatUser getUserByEmail(String email) {
-        return userRepository.findUserByEmail(email);
+        return userRepository.findUserByEmail(email).orElse(null);
     }
 
     public void deleteUser(Long userId) {

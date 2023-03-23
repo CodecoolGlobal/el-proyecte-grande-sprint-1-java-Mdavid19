@@ -1,12 +1,12 @@
 package com.codecool.liveMessenger.controller;
 
 import com.codecool.liveMessenger.model.ChatUser;
-import com.codecool.liveMessenger.security.request.AuthenticationRequest;
 import com.codecool.liveMessenger.security.request.RegisterRequest;
 import com.codecool.liveMessenger.security.response.AuthenticationResponse;
 import com.codecool.liveMessenger.service.AuthenticationService;
 import com.codecool.liveMessenger.service.UserService;
 import lombok.RequiredArgsConstructor;
+import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.*;
 
@@ -18,6 +18,7 @@ import java.util.List;
 @RequiredArgsConstructor
 public class RegistrationController {
     private UserService userService;
+    @Autowired
     private AuthenticationService authService;
 
 

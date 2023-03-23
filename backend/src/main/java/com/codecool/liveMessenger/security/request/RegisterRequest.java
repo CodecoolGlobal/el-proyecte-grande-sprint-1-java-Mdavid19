@@ -10,7 +10,7 @@ import lombok.NoArgsConstructor;
 @AllArgsConstructor
 @NoArgsConstructor
 public class RegisterRequest {
-    private String chatUsername;
+    private String chatUserName;
     private String chatUserPassword;
     private String chatUserEmail;
 
