@@ -3,9 +3,11 @@ import axios from "../AxiosInstance";
 import '../styles/Registration.css';
 import LandingPageLogo from "../component/LandingPageLogo";
 import {Button, TextField} from "@mui/material";
+import {useNavigate} from "react-router-dom";
 
 export function Registration() {
     const url = '/register';
+    const navigate = useNavigate();
     const buttonStyle = {
         margin: '30px 0'
     }
@@ -18,7 +20,7 @@ export function Registration() {
         try {
             await axios.post(url, body, config)
         } catch (error) {
-            console.warn('Some error', error)
+            console.warn('Error sending data to BE server at registration', error)
         }
     }
 
@@ -34,7 +36,7 @@ export function Registration() {
             const dataJson = JSON.stringify(values)
             await fetchSendUser(url, dataJson, config)
             actions.resetForm()
-            alert("Registration complete")
+            navigate('/login')
         }
     });
 
