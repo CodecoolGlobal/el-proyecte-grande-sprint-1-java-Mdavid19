@@ -11,7 +11,7 @@ const LoginPage = () => {
     const [loginStatus, setLoginStatus] = useState(false);
     const [userId, setUserId] = useState(null);
     const navigate = useNavigate();
-    const state = useRef(false);
+
 
     const url = "/login"
     const config = {
@@ -32,17 +32,12 @@ const LoginPage = () => {
             axios.post(url, body, config)
                 .then((response) => {
                     const data = response.data
-                    state.current = data
+                    console.log(data)
+                    window.localStorage.setItem("token", data.token);
                 })
-                .then(
-                    () => {
-                        if (state.current) {
-                            navigate('/main')
-                        }
-                    }
-                )
+
         } catch (error) {
-            console.warn('Some error', error)
+            console.warn('Error sending login data to BE server', error)
         }
     }
 
