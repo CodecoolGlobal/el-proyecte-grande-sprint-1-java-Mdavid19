@@ -35,9 +35,9 @@ public class LoginController {
     }
 
     @GetMapping("/api/get-me")
-    public String getMe(@RequestHeader(HttpHeaders.AUTHORIZATION) String token) {
+    public ChatUser getMe(@RequestHeader(HttpHeaders.AUTHORIZATION) String token) {
         String jwtToken = token.substring(JwtAuthenticationFilter.JWT_TOKEN_START_INDEX);
         String email = jwtService.extractUserName(jwtToken);
-        return userService.getUserByEmail(email).getChatUserName();
+        return userService.getUserByEmail(email);
     }
 }

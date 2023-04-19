@@ -4,13 +4,14 @@ import SetUserInfo from '../component/TextFieldForUserSettings'
 import ImageUploader from '../component/ImageUploader'
 import '../styles/UserPage.css'
 import HeaderForUserName from "../component/HeaderForUserName";
-
+import {useUser} from "../context/userProvider";
+import {useNavigate} from "react-router-dom";
 
 
 const UserProfile = () => {
+    const {user} = useUser()
 
-
-    return (
+    return user ? (
         <div className='proba'>
             <HeaderForUserName />
             <div className='container-for-picture' >
@@ -27,7 +28,8 @@ const UserProfile = () => {
             </div>
         </div>
 
-);
+) : (<div><h1>You have to login first</h1><button><a href={"/"}>Back</a></button></div>)
+
 };
 
 export default UserProfile;

@@ -7,24 +7,28 @@ import MainPage from "./pages/MainPage";
 import {Registration} from "./pages/Registration";
 import UserProfile from "./pages/UserProfile";
 import LoginPage from "./pages/LoginPage";
+import UserProvider, {useUser} from "./context/userProvider";
 
 
 const root = ReactDOM.createRoot(document.getElementById('root'));
+
 root.render(
     <React.StrictMode>
-        <Router>
-            <Routes>
-                <Route path='/' element={<LandingPage/>}/>
-                <Route path='/registration' element={<Registration/>}/>
-                <Route path='/chat-user-profile' element={<UserProfile/>}/>
-            </Routes>
-            <Routes>
-                <Route path='/main' element={<MainPage/>}/>
-            </Routes>
-            <Routes>
-                <Route path='/login' element={<LoginPage/>}/>
-            </Routes>
-        </Router>
+        <UserProvider>
+            <Router>
+                <Routes>
+                    <Route path='/' element={<LandingPage/>}/>
+                    <Route path='/registration' element={<Registration/>}/>
+                    <Route path='/chat-user-profile' element={<UserProfile/>}/>
+                </Routes>
+                <Routes>
+                    <Route path='/main' element={<MainPage/>}/>
+                </Routes>
+                <Routes>
+                    <Route path='/login' element={<LoginPage/>}/>
+                </Routes>
+            </Router>
+        </UserProvider>
     </React.StrictMode>
 );
 
