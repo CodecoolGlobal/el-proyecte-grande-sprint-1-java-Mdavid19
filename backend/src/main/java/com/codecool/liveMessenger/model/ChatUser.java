@@ -34,6 +34,7 @@ public class ChatUser implements UserDetails {
     @Enumerated(EnumType.STRING)
     private Role role;
 
+    @Transient
     @OneToMany(mappedBy = "user")
     List<Token> tokens;
 

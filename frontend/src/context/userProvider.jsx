@@ -10,17 +10,20 @@ const UserProvider = ({ children }) => {
     const [loading, setLoading] = useState(true);
     const [user, setUser] = useState(null)
 
-    const getMe = useCallback((token) => {
-        fetch("/api/get-me", {
+    const getMe = (token) => {
+         fetch("/api/get-me", {
             headers: {
                 authorization: `Bearer ${token}`,
             },
         })
-            .then((user) => {
-                setUser(user)
-            })
+            .then((user) =>
+                user.json()
+            )
+             .then((user) =>{
+                 setUser(user)
+         })
             .finally(() => {setLoading(false)})
-        }, []);
+        };
 
     useEffect(()=>{
         const token = getToken();
