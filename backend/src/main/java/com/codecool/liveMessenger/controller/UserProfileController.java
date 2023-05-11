@@ -20,12 +20,6 @@ public class UserProfileController {
         this.userService = userService;
     }
 
-    @GetMapping
-    public String getUserName() {
-//     TODO later change id to session id
-        ChatUser user = userService.getUserById(1L);
-        return user.getChatUserName();
-    }
 
     @PostMapping
     public void saveUserInfoChange(@RequestBody Map<String, String> data) {
