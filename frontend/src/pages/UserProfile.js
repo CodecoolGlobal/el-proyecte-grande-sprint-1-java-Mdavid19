@@ -5,7 +5,6 @@ import ImageUploader from '../component/ImageUploader'
 import '../styles/UserPage.css'
 import HeaderForUserName from "../component/HeaderForUserName";
 import {useUser} from "../context/userProvider";
-import {useNavigate} from "react-router-dom";
 
 
 const UserProfile = () => {

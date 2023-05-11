@@ -1,5 +1,6 @@
 import React, {useState} from "react";
 import axios from "../AxiosInstance";
+import Cookies from "js-cookie";
 
 export default function ImageUploader({pictureText}) {
 
@@ -13,11 +14,13 @@ export default function ImageUploader({pictureText}) {
         event.preventDefault();
         const url = '/chat-user-profile/upload';
         const formData = new FormData();
+        const token = Cookies.get('token')
         formData.append('file', file);
         formData.append('pictureType', pictureText)
         const config = {
             headers: {
                 'content-type': 'multipart/form-data',
+                Authorization: `Bearer ${token}`
             },
         };
         axios.post(url, formData, config).then((response) => {

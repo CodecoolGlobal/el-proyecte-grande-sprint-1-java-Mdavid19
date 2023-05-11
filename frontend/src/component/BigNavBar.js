@@ -26,7 +26,7 @@ const BigNavBar = () => {
         <div id='big-nav-bar'>
             <ProfilePicture/>
             <Button img_src={addUserIcon} url={'#'} className={'add-user-button'}/>
-            <Button img_src={gearPicture} url={'http://localhost:3000/chat-user-profile'} className={'edit-user-btn'}/>
+            <Button img_src={gearPicture} url={'/chat-user-profile'} className={'edit-user-btn'}/>
             <Button img_src={logoutIcon} url={'/'} className={'logout-btn'} onClick={handleLogout}/>
         </div>
     );
