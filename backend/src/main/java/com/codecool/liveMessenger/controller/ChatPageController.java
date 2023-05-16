@@ -2,6 +2,7 @@ package com.codecool.liveMessenger.controller;
 
 
 import com.codecool.liveMessenger.model.ChatUser;
+import com.codecool.liveMessenger.model.DTO.FriendDTO;
 import com.codecool.liveMessenger.model.Message;
 import com.codecool.liveMessenger.service.UserService;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -39,7 +40,7 @@ public class ChatPageController {
     }
 
     @GetMapping("/api/get-friends")
-    public List<ChatUser> getFriends(@RequestBody Map<String, Long> payload) {
+    public List<FriendDTO> getFriends(@RequestBody Map<String, Long> payload) {
         var chatUser = userService.getUserById(payload.get("id"));
         return userService.getFriends(chatUser);
     }
