@@ -40,8 +40,8 @@ public class ChatPageController {
     }
 
     @GetMapping("/api/get-friends")
-    public List<FriendDTO> getFriends(@RequestBody Map<String, Long> payload) {
-        var chatUser = userService.getUserById(payload.get("id"));
+    public List<FriendDTO> getFriends(@RequestParam Long id) {
+        var chatUser = userService.getUserById(id);
         return userService.getFriends(chatUser);
     }
 }
