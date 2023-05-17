@@ -21,6 +21,7 @@ const UserProvider = ({ children }) => {
             )
              .then((user) =>{
                  setUser(user)
+                 console.log(user)
          })
             .finally(() => {setLoading(false)})
         };

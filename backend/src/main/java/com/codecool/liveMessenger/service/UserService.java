@@ -1,9 +1,11 @@
 package com.codecool.liveMessenger.service;
 
 import com.codecool.liveMessenger.model.ChatUser;
+import com.codecool.liveMessenger.model.DTO.FriendDTO;
 import com.codecool.liveMessenger.model.repositories.UserRepository;
 import org.springframework.stereotype.Service;
 
+import java.util.ArrayList;
 import java.util.List;
 import java.util.Map;
 
@@ -74,5 +76,31 @@ public class UserService {
         ChatUser chatUserToUpdate = userRepository.findUserById(userId);
         chatUserToUpdate.setProfilePicture(profilePicture);
         userRepository.save(chatUserToUpdate);
+    }
+
+    public void addFollower(ChatUser chatUser, ChatUser friend) {
+        List<ChatUser> followers = chatUser.getFollower();
+        followers.add(friend);
+        userRepository.save(chatUser);
+    }
+
+    public void addFollowing(ChatUser chatUser, ChatUser friend) {
+        List<ChatUser> following = friend.getFollowing();
+        following.add(chatUser);
+        userRepository.save(friend);
+    }
+
+    public List<FriendDTO> getFriends(ChatUser chatUser){
+        List<ChatUser> rawFriends = new ArrayList<>(chatUser.getFollower());
+        rawFriends.addAll(chatUser.getFollowing());
+        List<FriendDTO> friends = new ArrayList<>();
+        for (ChatUser rawFriend : rawFriends) {
+            FriendDTO friend = FriendDTO.builder()
+                    .id(rawFriend.getId())
+                    .name(rawFriend.getChatUserName())
+            .build();
+            friends.add(friend);
+        }
+        return friends;
     }
 }
