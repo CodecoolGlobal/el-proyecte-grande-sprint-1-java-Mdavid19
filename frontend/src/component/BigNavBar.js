@@ -16,7 +16,7 @@ import DialogActions from '@mui/material/DialogActions'
 import TextField from '@mui/material/TextField'
 import Button from '@mui/material/Button'
 
-const BigNavBar = () => {
+const BigNavBar = ({getFriends, friends}) => {
     const {logout,user} = useUser();
     const navigate = useNavigate();
     const [open, setOpen] = React.useState(false);
@@ -57,7 +57,12 @@ const BigNavBar = () => {
     const addFriend = ()=>{
         sendData()
         handleClose()
+        getFriends()
     }
+
+    React.useEffect(() =>{
+        getFriends()
+    }, [friends])
 
 
     return (
