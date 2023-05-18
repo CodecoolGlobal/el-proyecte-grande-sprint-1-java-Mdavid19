@@ -16,7 +16,7 @@ import DialogActions from '@mui/material/DialogActions'
 import TextField from '@mui/material/TextField'
 import Button from '@mui/material/Button'
 
-const BigNavBar = ({getFriends, friends}) => {
+const BigNavBar = ({onFriendAdded}) => {
     const {logout,user} = useUser();
     const navigate = useNavigate();
     const [open, setOpen] = React.useState(false);
@@ -41,29 +41,23 @@ const BigNavBar = ({getFriends, friends}) => {
         email:friendEmail
     }
 
-    function sendData(){
-        fetch("/api/add-friend",{
+    async function sendData(){
+        let response = await fetch("/api/add-friend",{
             method:"POST",
             headers:{
                 Authorization: `Bearer ${token}`,
                 "Content-type":"application/json"
             },
             body: JSON.stringify(data)
-        }).then((res)=>{
-            console.log(res.status)
         })
+        console.log(response.status)
     }
 
-    const addFriend = ()=>{
-        sendData()
+    const addFriend = async ()=>{
+        await sendData()
         handleClose()
-        getFriends()
+        onFriendAdded()
     }
-
-    React.useEffect(() =>{
-        getFriends()
-    }, [friends])
-
 
     return (
         <div id='big-nav-bar'>

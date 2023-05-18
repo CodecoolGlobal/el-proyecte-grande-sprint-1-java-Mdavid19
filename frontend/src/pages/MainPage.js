@@ -5,6 +5,7 @@ import PageContent from "../component/PageContent";
 import {useUser} from "../context/userProvider";
 import {useNavigate} from "react-router-dom";
 import Cookies from "js-cookie";
+import friendCard from "../component/FriendCard";
 
 const MainPage = () => {
     const style = {
@@ -32,11 +33,12 @@ const MainPage = () => {
         if(!user){
             navigate("/")
         }
+        getFriends()
     },[])
 
     return user ? (
         <div style={style}>
-            <BigNavBar getFriends={getFriends} friends={friends}/>
+            <BigNavBar onFriendAdded={() => getFriends()}/>
             <PageContent friends={friends}/>
         </div>
     ) : alert("You have to log in first!");
