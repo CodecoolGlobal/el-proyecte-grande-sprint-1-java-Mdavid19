@@ -28,11 +28,12 @@ public class UserProfileController {
     }
 
     @PostMapping("/upload")
-    public ResponseEntity<?> handleUploadFile(@RequestPart("file") MultipartFile file, @RequestPart("pictureType") String pictureType) {
+    public ResponseEntity<?> handleUploadFile(@RequestPart("file") MultipartFile file, @RequestPart("pictureType") String pictureType, @RequestPart("userId") String userId) {
         String fileName = file.getOriginalFilename();
 
         try {
             file.transferTo(new File("/home/tamas/Projects/Advance/week_1/el-proyecte-grande-sprint-1-java-Mdavid19/user_pictures", fileName));
+            userService.saveUserPicture(Long.parseLong(userId), pictureType, fileName);
         } catch (Exception e) {
             return ResponseEntity.status(HttpStatus.INTERNAL_SERVER_ERROR).build();
         }
