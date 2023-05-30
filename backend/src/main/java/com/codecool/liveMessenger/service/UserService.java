@@ -72,9 +72,13 @@ public class UserService {
         userRepository.save(user);
     }
 
-    public void saveuserProfilePicture(Long userId, String profilePicture) {
+    public void saveUserPicture(Long userId, String pictureType, String pictureName) {
         ChatUser chatUserToUpdate = userRepository.findUserById(userId);
-        chatUserToUpdate.setProfilePicture(profilePicture);
+        if (pictureType.equals("profile")) {
+            chatUserToUpdate.setProfilePicture(pictureName);
+        } else {
+            chatUserToUpdate.setCoverPicture(pictureName);
+        }
         userRepository.save(chatUserToUpdate);
     }
 
