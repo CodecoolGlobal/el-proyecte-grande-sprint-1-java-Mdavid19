@@ -20,25 +20,19 @@ public class UserProfileController {
         this.userService = userService;
     }
 
-    @GetMapping
-    public String getUserName() {
-//     TODO later change id to session id
-        ChatUser user = userService.getUserById(1L);
-        return user.getChatUserName();
-    }
 
     @PostMapping
     public void saveUserInfoChange(@RequestBody Map<String, String> data) {
-//      TODO  in session will be the user id just for testing we gave an id
-        userService.updateUserInfo(1L, data);
+        userService.updateUserInfo(data);
     }
 
     @PostMapping("/upload")
-    public ResponseEntity<?> handleUploadFile(@RequestPart("file") MultipartFile file, @RequestPart("pictureType") String pictureType) {
+    public ResponseEntity<?> handleUploadFile(@RequestPart("file") MultipartFile file, @RequestPart("pictureType") String pictureType, @RequestPart("userId") String userId) {
         String fileName = file.getOriginalFilename();
 
         try {
             file.transferTo(new File("/home/tamas/Projects/Advance/week_1/el-proyecte-grande-sprint-1-java-Mdavid19/user_pictures", fileName));
+            userService.saveUserPicture(Long.parseLong(userId), pictureType, fileName);
         } catch (Exception e) {
             return ResponseEntity.status(HttpStatus.INTERNAL_SERVER_ERROR).build();
         }

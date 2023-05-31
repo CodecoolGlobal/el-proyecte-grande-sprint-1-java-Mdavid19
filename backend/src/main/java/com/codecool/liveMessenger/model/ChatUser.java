@@ -1,22 +1,30 @@
 package com.codecool.liveMessenger.model;
 
+import com.fasterxml.jackson.annotation.JsonBackReference;
+import com.fasterxml.jackson.annotation.JsonIgnore;
+import com.fasterxml.jackson.annotation.JsonManagedReference;
 import jakarta.persistence.*;
 import lombok.AllArgsConstructor;
 import lombok.Builder;
 import lombok.Data;
 import lombok.NoArgsConstructor;
+import org.hibernate.annotations.DynamicInsert;
+import org.hibernate.annotations.DynamicUpdate;
 import org.springframework.security.core.GrantedAuthority;
 import org.springframework.security.core.authority.SimpleGrantedAuthority;
 import org.springframework.security.core.userdetails.UserDetails;
+import org.springframework.transaction.annotation.Transactional;
 
-import java.util.Collection;
-import java.util.List;
+import java.util.*;
 
 @Entity
 @Data
 @NoArgsConstructor
 @AllArgsConstructor
 @Builder
+@DynamicInsert
+@DynamicUpdate
+@Transactional
 public class ChatUser implements UserDetails {
 
     private String chatUserName;
@@ -33,6 +41,14 @@ public class ChatUser implements UserDetails {
 
     @Enumerated(EnumType.STRING)
     private Role role;
+
+    @JsonManagedReference
+    @ManyToMany(mappedBy = "following")
+    private List<ChatUser> follower = new ArrayList<>();
+
+    @JsonBackReference
+    @ManyToMany
+    private List<ChatUser> following = new ArrayList<>();
 
     @Transient
     @OneToMany(mappedBy = "user")
@@ -91,5 +107,28 @@ public class ChatUser implements UserDetails {
     @Override
     public boolean isEnabled() {
         return true;
+    }
+
+    public void addFollower(List<ChatUser> friends) {
+       follower = friends;
+    }
+
+    public void addFollowing(List<ChatUser> friends){
+        following = friends;
+    }
+
+    @Override
+    public String toString() {
+        return "ChatUser{" +
+                "chatUserName='" + chatUserName + '\'' +
+                ", email='" + email + '\'' +
+                ", password='" + password + '\'' +
+                ", id=" + id +
+                ", statusMessage='" + statusMessage + '\'' +
+                ", profilePicture='" + profilePicture + '\'' +
+                ", coverPicture='" + coverPicture + '\'' +
+                ", role=" + role +
+                ", tokens=" + tokens +
+                '}';
     }
 }

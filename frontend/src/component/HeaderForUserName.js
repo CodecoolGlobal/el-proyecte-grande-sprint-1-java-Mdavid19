@@ -1,28 +1,11 @@
-import {useEffect, useState} from "react";
-import axios from "axios";
+import {useUser} from "../context/userProvider";
 
 export default function HeaderForUserName() {
-
-    const url = '/chat-user-profile'
-
-    const [userName, setUserName] = useState("")
-
-    const getUserName = async () => {
-       try {
-           const response = await axios.get(url)
-           setUserName(response.data)
-       } catch (error) {
-           console.log(error)
-       }
-    }
-
-    useEffect(() => {
-        getUserName()
-    }, [])
+    const {user} = useUser()
 
     return (
         <div className="user-name">
-            <h1>{userName}</h1>
+            <h1>{user.chatUserName}</h1>
         </div>
     )
 }

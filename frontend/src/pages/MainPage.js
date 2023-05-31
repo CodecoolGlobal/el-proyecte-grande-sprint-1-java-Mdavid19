@@ -4,6 +4,8 @@ import '../styles/MainPage.css'
 import PageContent from "../component/PageContent";
 import {useUser} from "../context/userProvider";
 import {useNavigate} from "react-router-dom";
+import Cookies from "js-cookie";
+import friendCard from "../component/FriendCard";
 
 const MainPage = () => {
     const style = {
@@ -11,20 +13,33 @@ const MainPage = () => {
         flexDirection:'column',
         height: '100%'
     }
-
+    const [friends, setFriends] = React.useState([]);
     const navigate = useNavigate();
     const {user} = useUser()
+
+    function getFriends(){
+        fetch(`/api/get-friends?id=${user.id}`,
+            {
+                headers: {
+                    Authorization: `Bearer ${Cookies.get("token")}`
+                }
+            }).then((res) => res.json())
+            .then((res) => {
+                setFriends(res)
+            })
+    }
 
     useEffect(()=>{
         if(!user){
             navigate("/")
         }
+        getFriends()
     },[])
 
     return user ? (
         <div style={style}>
-            <BigNavBar/>
-            <PageContent/>
+            <BigNavBar onFriendAdded={() => getFriends()}/>
+            <PageContent friends={friends}/>
         </div>
     ) : alert("You have to log in first!");
 };

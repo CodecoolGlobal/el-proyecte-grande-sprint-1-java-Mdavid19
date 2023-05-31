@@ -7,7 +7,7 @@ import SockJS from "sockjs-client"
 
 var stompClient = null
 
-const PageContent = () => {
+const PageContent = ({friends}) => {
     const [privateChat, setPrivateChat] = useState(new Map());
     const [tab, setTab] = useState("");
     // Init userContextProvider
@@ -75,7 +75,7 @@ const PageContent = () => {
     return (
         <div className={'main-content'}>
             <div className={'friends-list'}>
-                <BasicFriendList/>
+                <BasicFriendList friends={friends}/>
             </div>
             <div className={'chat-panel'}>
                 <Box id="chatBox" sx={{width: '100%', height: '90%', backgroundColor: 'primary.dark'}}/>

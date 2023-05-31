@@ -3,6 +3,8 @@ import {Button, createTheme, TextField, ThemeProvider} from "@mui/material";
 import '../styles/UserPage.css'
 import SaveIcon from '@mui/icons-material/Save';
 import axios from "../AxiosInstance";
+import Cookies from "js-cookie";
+import {useUser} from "../context/userProvider";
 
 
 function SetUserInfo({labelForTextArea, inputName}) {
@@ -14,21 +16,24 @@ function SetUserInfo({labelForTextArea, inputName}) {
         },
     });
 
+    const [content, setContent] = useState("");
     const url = "/chat-user-profile"
+    const token = Cookies.get('token')
+    const {user} = useUser()
 
     const config = {
         headers: {
+            Authorization: `Bearer ${token}`,
             'Content-type': 'application/json'
         }
     }
-
-    const [content, setContent] = useState("");
 
     const handleChange = () => {
         sendUserInfoChanges(url, data, config)
     }
 
     const data = {
+        userId: user.id,
         fieldName: inputName,
         userInfo: content
     }
