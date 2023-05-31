@@ -39,8 +39,8 @@ public class UserService {
         }
     }
 
-    public void updateUserInfo(Long userId, Map<String, String> userInfo) {
-        ChatUser chatUserToUpdate = userRepository.findUserById(userId);
+    public void updateUserInfo(Map<String, String> userInfo) {
+        ChatUser chatUserToUpdate = userRepository.findUserById(Long.parseLong(userInfo.get("userId")));
         if (userInfo.get("fieldName").equals("userName")) {
             updateUserName(chatUserToUpdate, userInfo.get("userInfo"));
         } else if (userInfo.get("fieldName").equals("email")) {

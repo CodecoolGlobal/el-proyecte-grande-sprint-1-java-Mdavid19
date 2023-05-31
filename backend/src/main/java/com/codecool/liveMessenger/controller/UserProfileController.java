@@ -23,8 +23,7 @@ public class UserProfileController {
 
     @PostMapping
     public void saveUserInfoChange(@RequestBody Map<String, String> data) {
-//      TODO  in session will be the user id just for testing we gave an id
-        userService.updateUserInfo(1L, data);
+        userService.updateUserInfo(data);
     }
 
     @PostMapping("/upload")
