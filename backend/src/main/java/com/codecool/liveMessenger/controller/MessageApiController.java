@@ -22,7 +22,7 @@ public class MessageApiController {
     @PostMapping
     private void saveMessage(@RequestBody Map<String,String> payload){
         Message message = Message.builder()
-                .content(payload.get("content"))
+                .message(payload.get("message"))
                 .date(LocalDate.now())
                 .senderId(Long.parseLong(payload.get("senderId")))
                 .receiverId(Long.parseLong(payload.get("receiverId")))

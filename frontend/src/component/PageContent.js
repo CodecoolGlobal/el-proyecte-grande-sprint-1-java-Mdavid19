@@ -22,26 +22,28 @@ const PageContent = ({friends}) => {
 
 
     const connect = () => {
-        let Sock = new SockJS("http://localhost:3000/ws")
+        let Sock = new SockJS("/ws")
         stompClient = over(Sock);
         stompClient.connect({},onConnected,onError)
     }
 
     const onConnected = ()=>{
         setMessageData({...messageData, "connected":true})
-        stompClient.subscribe('/user/' + messageData.userId + '/private', onPrivateMessageRecieved);
+        stompClient.subscribe('/user/' + messageData.userId + '/private', onPrivateMessageReceived);
     }
 
-    const onPrivateMessageRecieved = (payload)=>{
+    const onPrivateMessageReceived = (payload)=>{
+        console.log(payload)
         let payloadData = JSON.parse(payload.body);
         if(privateChat.get(payloadData.senderId)){
             privateChat.get(payloadData.senderId).push(payloadData)
-            setPrivateChat(new Map(privateChat))
+            setPrivateChat(privateChat)
         }else{
             let list = [];
+            console.log("menjél anyádba")
             list.push(payloadData);
             privateChat.set(payloadData.senderId,list)
-            setPrivateChat(new Map(privateChat))
+            setPrivateChat(privateChat)
         }
     }
 
@@ -50,7 +52,8 @@ const PageContent = ({friends}) => {
     }
 
     const handleMessage = (event)=>{
-        setMessageData({...messageData,"message":event.target})
+        setMessageData({...messageData,"message":event.target.value})
+
     }
 
     const sendPrivateValue = ()=>{
@@ -61,8 +64,19 @@ const PageContent = ({friends}) => {
                 message: messageData.message,
             };
         if(messageData.userId !== tab){
-            privateChat.get(tab).push(chatMessage)
-            setPrivateChat(new Map(privateChat));
+            if(!privateChat.get(tab)){
+                let messages = []
+                messages.push(chatMessage)
+                privateChat.set(tab,messages)
+                setPrivateChat(privateChat);
+
+            }else{
+                console.log(privateChat.get(tab))
+                let messages = privateChat.get(tab)
+                    messages.push(chatMessage)
+                privateChat.set(tab,messages)
+                setPrivateChat(privateChat);
+            }
 
             }
         stompClient.send("/app/private-message",{}, JSON.stringify(chatMessage));
@@ -70,12 +84,16 @@ const PageContent = ({friends}) => {
         }
     }
 
+    React.useEffect(()=>{
+        connect();
+        console.log(tab);
+    },[tab])
 
 
-    return (
+        return (
         <div className={'main-content'}>
             <div className={'friends-list'}>
-                <BasicFriendList friends={friends}/>
+                <BasicFriendList friends={friends} setTab={setTab}/>
             </div>
             <div className={'chat-panel'}>
                 <Box id="chatBox" sx={{width: '100%', height: '90%', backgroundColor: 'primary.dark'}}/>
