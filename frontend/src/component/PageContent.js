@@ -9,7 +9,7 @@ var stompClient = null
 
 const PageContent = ({friends}) => {
     const [privateChat, setPrivateChat] = useState(new Map());
-    const [tab, setTab] = useState("");
+    const [tab, setTab] = useState(null);
     // Init userContextProvider
     const {user} = useUser();
     const [messageData, setMessageData] = useState({
@@ -33,17 +33,16 @@ const PageContent = ({friends}) => {
     }
 
     const onPrivateMessageReceived = (payload)=>{
-        console.log(payload)
         let payloadData = JSON.parse(payload.body);
         if(privateChat.get(payloadData.senderId)){
             privateChat.get(payloadData.senderId).push(payloadData)
-            setPrivateChat(privateChat)
+            setPrivateChat(new Map(privateChat))
+
         }else{
             let list = [];
-            console.log("menjél anyádba")
             list.push(payloadData);
             privateChat.set(payloadData.senderId,list)
-            setPrivateChat(privateChat)
+            setPrivateChat(new Map(privateChat))
         }
     }
 
@@ -68,14 +67,13 @@ const PageContent = ({friends}) => {
                 let messages = []
                 messages.push(chatMessage)
                 privateChat.set(tab,messages)
-                setPrivateChat(privateChat);
+                setPrivateChat(new Map(privateChat));
 
             }else{
-                console.log(privateChat.get(tab))
                 let messages = privateChat.get(tab)
                     messages.push(chatMessage)
                 privateChat.set(tab,messages)
-                setPrivateChat(privateChat);
+                setPrivateChat(new Map(privateChat));
             }
 
             }
@@ -87,7 +85,20 @@ const PageContent = ({friends}) => {
     React.useEffect(()=>{
         connect();
         console.log(tab);
+        showMessages();
     },[tab])
+
+    const showMessages = () => {
+        console.log(privateChat.get(tab))
+        return privateChat.get(tab) !== undefined ? (
+        <ul className="chat-messages">
+            ({[...privateChat.get(tab)].map((chat,index)=>(
+            <li  key={index}>
+                <div className="message-data">{chat.message}</div>
+            </li>
+        ))})
+    </ul>): <div></div>
+    }
 
 
         return (
@@ -96,8 +107,17 @@ const PageContent = ({friends}) => {
                 <BasicFriendList friends={friends} setTab={setTab}/>
             </div>
             <div className={'chat-panel'}>
-                <Box id="chatBox" sx={{width: '100%', height: '90%', backgroundColor: 'primary.dark'}}/>
-
+                <div className={'message-panel'}>
+                    {privateChat.get(tab) !== undefined ?
+                    <ul className="chat-messages">
+                        {[...privateChat.get(tab)].map((chat,index)=>(
+                        <li  key={index}>
+                            <div className="message-data">{chat.message}</div>
+                        </li>
+                    ))}
+                    </ul>: <div></div>}
+                </div>
+                <div className="sending-panel">
                 <TextField fullWidth InputProps={{
                     endAdornment: (
                         <InputAdornment position="end">
@@ -107,6 +127,7 @@ const PageContent = ({friends}) => {
                 }} sx={{backgroundColor: '#FFFFFF'}} id="fullWidth"
                            onChange={handleMessage}
                            />
+                </div>
             </div>
         </div>
     );
