@@ -43,15 +43,18 @@
 .chat-panel{
   width: 50%;
   background-color: #2698D3;
-  height:100%;
+  height:75vh;
   border:  2px yellowgreen solid;
+  display: flex;
+  flex-direction: column;
+  align-items: flex-end;
 }
 
 .main-content{
   position: relative;
   display: flex;
   flex-direction: row;
-  height: 100%;
+
 }
 
 .profile-picture{
@@ -80,4 +83,19 @@
   top: 20px;
   right: 80px;
 
+}
+
+.message-panel{
+  overflow-y: scroll;
+  order: 1;
+  display: flex;
+  flex-direction: column-reverse;
+  width: 100%;
+  height: 100%;
+
+}
+
+.sending-panel{
+  width: 100%;
+  order: 2;
 }
