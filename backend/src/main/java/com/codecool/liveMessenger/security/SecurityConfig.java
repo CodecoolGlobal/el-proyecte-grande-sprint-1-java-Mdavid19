@@ -27,9 +27,11 @@ public class SecurityConfig {
     public SecurityFilterChain securityFilterChain(HttpSecurity http) throws Exception{
         http
                 .csrf().disable()
+                .cors(cors -> cors.disable())
                 .authorizeHttpRequests()
                 .requestMatchers(HttpMethod.POST,"/login").permitAll() //TODO maybe this exists already in security we have to change
                 .requestMatchers(HttpMethod.POST,"/register").permitAll()
+                .requestMatchers("/ws/**").permitAll()
                 .anyRequest().authenticated()
                 .and()
                 .sessionManagement()

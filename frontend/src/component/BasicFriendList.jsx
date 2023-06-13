@@ -4,15 +4,15 @@ import Brightness1RoundedIcon  from '@mui/icons-material/Brightness1Rounded';
 import {useUser} from "../context/userProvider";
 
 
-const BasicFriendList = ({friends}) => {
+const BasicFriendList = ({friends, setTab}) => {
 
     const {user} = useUser();
     const showFriends = (data) => {
         let friendsElement = []
         for (let friend of data) {
             friendsElement.push(
-            <ListItem disablePadding>
-                <ListItemButton>
+            <ListItem disablePadding key={friend.id}>
+                <ListItemButton onClick={()=>setTab(friend.id)}>
                     <ListItemText primary={friend.name} className={'friends-list-text'}/>
                     <ListItemIcon>
                         <Brightness1RoundedIcon sx={{ color:'#06FD00'}}/>
