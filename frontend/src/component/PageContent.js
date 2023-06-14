@@ -1,15 +1,17 @@
-import React, {useState} from 'react';
+import React, { useState} from 'react';
 import {Box, Button, InputAdornment, TextField} from "@mui/material";
 import BasicFriendList from "./BasicFriendList";
 import {useUser} from "../context/userProvider";
 import {over} from "stompjs"
 import SockJS from "sockjs-client"
 
-var stompClient = null
+let stompClient = null
 
 const PageContent = ({friends}) => {
     const [privateChat, setPrivateChat] = useState(new Map());
     const [tab, setTab] = useState(null);
+    const [friendName, setFriendName] = useState("");
+    const [sockets, setSockets] = useState([]);
     // Init userContextProvider
     const {user} = useUser();
     const [messageData, setMessageData] = useState({
@@ -19,12 +21,14 @@ const PageContent = ({friends}) => {
         message:""
     });
 
-
-
     const connect = () => {
+        sockets.forEach((s) => {
+            s.close()
+        })
         let Sock = new SockJS("/ws")
         stompClient = over(Sock);
         stompClient.connect({},onConnected,onError)
+        sockets.push(Sock)
     }
 
     const onConnected = ()=>{
@@ -57,7 +61,7 @@ const PageContent = ({friends}) => {
 
     const sendPrivateValue = ()=>{
         if(stompClient){
-            var chatMessage = {
+            let chatMessage = {
                 senderId:messageData.userId,
                 receiverId: tab,
                 message: messageData.message,
@@ -85,37 +89,27 @@ const PageContent = ({friends}) => {
     React.useEffect(()=>{
         connect();
         console.log(tab);
-        showMessages();
     },[tab])
-
-    const showMessages = () => {
-        console.log(privateChat.get(tab))
-        return privateChat.get(tab) !== undefined ? (
-        <ul className="chat-messages">
-            ({[...privateChat.get(tab)].map((chat,index)=>(
-            <li  key={index}>
-                <div className="message-data">{chat.message}</div>
-            </li>
-        ))})
-    </ul>): <div></div>
-    }
 
 
         return (
         <div className={'main-content'}>
             <div className={'friends-list'}>
-                <BasicFriendList friends={friends} setTab={setTab}/>
+                <BasicFriendList friends={friends} setTab={setTab} setFriendName={setFriendName}/>
             </div>
             <div className={'chat-panel'}>
                 <div className={'message-panel'}>
                     {privateChat.get(tab) !== undefined ?
-                    <ul className="chat-messages">
+                    <div className="chat-messages">
                         {[...privateChat.get(tab)].map((chat,index)=>(
-                        <li  key={index}>
-                            <div className="message-data">{chat.message}</div>
-                        </li>
+                        <div className={chat.senderId === user.id ? "sender" : "receiver"} key={index} >
+                            
+                            {
+                                chat.senderId === user.id ? <div><p>{user.chatUserName}</p><p className="message-data">{chat.message}</p></div> : <div><p>{friendName}</p><p className="message-data">{chat.message}</p></div>
+                            }
+                        </div>
                     ))}
-                    </ul>: <div></div>}
+                    </div>: <div></div>}
                 </div>
                 <div className="sending-panel">
                 <TextField fullWidth InputProps={{
@@ -125,7 +119,7 @@ const PageContent = ({friends}) => {
                         </InputAdornment>
                     ),
                 }} sx={{backgroundColor: '#FFFFFF'}} id="fullWidth"
-                           onChange={handleMessage}
+                           onChange={handleMessage} value={messageData.message}
                            />
                 </div>
             </div>
