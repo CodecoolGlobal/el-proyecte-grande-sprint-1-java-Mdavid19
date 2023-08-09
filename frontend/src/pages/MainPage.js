@@ -5,7 +5,6 @@ import PageContent from "../component/PageContent";
 import {useUser} from "../context/userProvider";
 import {useNavigate} from "react-router-dom";
 import Cookies from "js-cookie";
-import friendCard from "../component/FriendCard";
 
 const MainPage = () => {
     const style = {
