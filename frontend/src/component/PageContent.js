@@ -1,9 +1,10 @@
 import React, { useState} from 'react';
-import {Box, Button, InputAdornment, TextField} from "@mui/material";
+import {Button} from "@mui/material";
 import BasicFriendList from "./BasicFriendList";
 import {useUser} from "../context/userProvider";
 import {over} from "stompjs"
 import SockJS from "sockjs-client"
+import '../styles/messageBox.css'
 
 let stompClient = null
 
@@ -103,7 +104,7 @@ const PageContent = ({friends}) => {
                     <div className="chat-messages">
                         {[...privateChat.get(tab)].map((chat,index)=>(
                         <div className={chat.senderId === user.id ? "sender" : "receiver"} key={index} >
-                            
+
                             {
                                 chat.senderId === user.id ? <div><p>{user.chatUserName}</p><p className="message-data">{chat.message}</p></div> : <div><p>{friendName}</p><p className="message-data">{chat.message}</p></div>
                             }
@@ -111,16 +112,18 @@ const PageContent = ({friends}) => {
                     ))}
                     </div>: <div></div>}
                 </div>
-                <div className="sending-panel">
-                <TextField fullWidth InputProps={{
-                    endAdornment: (
-                        <InputAdornment position="end">
-                            <Button  variant="contained" onClick={sendPrivateValue}>Send</Button>
-                        </InputAdornment>
-                    ),
-                }} sx={{backgroundColor: '#FFFFFF'}} id="fullWidth"
-                           onChange={handleMessage} value={messageData.message}
-                           />
+                <div className={"sending-panel"}>
+                    <input type="text" className={"message-input-field"}  onChange={handleMessage} value={messageData.message}/>
+                    <Button className={"send-message-btn"}  variant="contained" onClick={sendPrivateValue}>Send</Button>
+                {/*<TextField variant={"standard"} className={"sending-panel"} fullWidth InputProps={{*/}
+                {/*    endAdornment: (*/}
+                {/*        <InputAdornment position="end">*/}
+                {/*            <Button  variant="contained" onClick={sendPrivateValue}>Send</Button>*/}
+                {/*        </InputAdornment>*/}
+                {/*    ),*/}
+                {/*}} sx={{backgroundColor: '#FFFFFF'}} id="fullWidth"*/}
+                {/*           onChange={handleMessage} value={messageData.message}*/}
+                {/*           />*/}
                 </div>
             </div>
         </div>

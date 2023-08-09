@@ -1,0 +1,59 @@
+.chat-panel {
+    border-radius: 8px;
+    background: #87E3F8;
+    box-shadow: -6px -7px 4px 0px rgba(0, 0, 0, 0.25) inset;
+}
+.friends-list{
+    border-radius: 8px;
+    background: #95BFE5;
+    box-shadow: -6px -6px 4px 0px rgba(0, 0, 0, 0.25) inset;
+}
+
+.sender {
+    color: #000033;
+}
+
+.receiver {
+    color: #000033;
+}
+
+.sending-panel{
+    order: 2;
+    width: 90%;
+    height: 55px;
+    flex-shrink: 0;
+    border-radius: 22px;
+    border: none;
+    background: #FFF;
+    box-shadow: 3px 6px 4px 0px rgba(0, 0, 0, 0.25);
+    display: flex;
+    flex-direction: row;
+    align-items: center;
+    justify-content: space-evenly;
+
+}
+
+.message-input-field{
+    height: 53px;
+    flex-shrink: 0;
+    border-radius: 20px;
+    border: none;
+    background: #FFF;
+    width: 85%;
+    font-size: 20px;
+}
+
+.message-input-field:focus{
+    height: 53px;
+    flex-shrink: 0;
+    border-radius: 20px;
+    border: none;
+    background: #FFF;
+    width: 85%;
+    font-size: 20px;
+    outline: none;
+}
+
+.send-message-btn{
+    height: 30px;
+}
